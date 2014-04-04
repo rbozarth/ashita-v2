@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ashita</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/ashita.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" role="navigation">
+            <div class="container-fluid  navbar-left">
+                <a class="btn btn-info navbar-btn" href="index.html">
+                    <span class="glyphicon glyphicon-home"></span> Index
+                </a>
+            </div>
+            <div class="container-fluid  navbar-right">
+                <a class="btn btn-danger navbar-btn" href="http://www.ffevo.net/forum/95-support/">
+                    <span class="glyphicon glyphicon-fire"></span> Bug Reports
+                </a>
+                <a class="btn btn-info navbar-btn" href="http://www.ffevo.net/forum/94-ashita-v2/">
+                    <span class="glyphicon glyphicon-comment"></span> Forums
+                </a>
+                <a class="btn btn-warning navbar-btn" href="changelog.html">
+                    <span class="glyphicon glyphicon-list"></span> Changelog
+                </a>
+                <a class="btn btn-success navbar-btn" href="http://delvl.ffevo.net/">
+                    <span class="glyphicon glyphicon-wrench"></span> For Developers
+                </a>
+            </div>
+        </nav>
+        <div class="container header">
+            <img id="moogle" alt="Moogle" src="assets/Ashita.ico" width="128" height="128" style="margin-bottom: -20px; padding: 0;" data-toggle="tooltip" data-placement="right" title="Kupo!~">
+            <hr />
+            <h1>Changelog</h1>
+        </div>
+    </header>
+
+    <!-- Changelog -->
+    <div class="container changelog">
+        <!-- Version v2.0.0.5 -->
+        <article class="release">
+            <h3>v2.0.0.5</h3>
+            <span class="date">Released: 4.01.2014</span>
+            <div class="clear"></div>
+            <ul class="changelist">
+                <li class="blue"><span><b>ADD</b></span> QueueCommand for Lua addons to prevent event overwriting.</li>
+                <li class="green"><span><b>FIX</b></span> Crash that would occur on invalid /alias commands.</li>
+                <li class="green"><span><b>FIX</b></span> Crash that would occur on invalid /plugin commands.</li>
+                <li class="green"><span><b>FIX</b></span> Crash that would occur on invalid /addon commands.</li>
+            </ul>
+        </article>
+        
+        <!-- Version v2.0.0.4 -->
+        <article class="release">
+            <h3>v2.0.0.4</h3>
+            <span class="date">Released: 4.01.2014</span>
+            <div class="clear"></div>
+            <ul class="changelist">
+                <li class="blue"><span><b>ADD</b></span> Added /alias list - to list all current alias binds.</li>
+                <li class="blue"><span><b>ADD</b></span> Added /alias clearall - to delete all current alias binds.</li>
+                <li class="blue"><span><b>ADD</b></span> Added keybinds internally handled within the core.</li>
+                <li class="orange"><span><b>CHG</b></span> Target health and ID are now read from the entity structure instead of from the target structure.</li>
+                <li class="green"><span><b>FIX</b></span> Fixed windows key working while game had focus.</li>
+                <li class="blue"><span><b>ADD</b></span> Addons now have access to memory functions. (These can be accessed by the mem table. See below.)</li>
+                <li class="blue"><span><b>ADD</b></span> Addons can now access the global libs folder located at Scripts\addons\libs</li>
+                <li class="green"><span><b>FIX</b></span> Fixed alignment issue with entity structure.</li>
+                <li class="blue"><span><b>ADD</b></span> Several addons have been ported from v1 plugins and are now included.</li>
+                <li class="orange"><span><b>CHG</b></span> FPS addon now has configurations as an example.</li>
+                <li class="orange"><span><b>CHG</b></span> Addons now display more information when loaded.</li>
+            </ul>
+            <div class="clear"></div>
+            <br/>
+            <div class="expand" onClick="collaspe('2004info')"><b>+ Expand Information</b></div>
+            <code id="2004info" style="display: none">
+Keybind Information
+    - /bind [mods][key] [up/down] [command]
+    - /unbind [mods][key] [up/doown]
+    - /bind list - to list all current keybinds.
+    - /unbind all - to unbind all keys.
+    - /unbindall and /clearbinds - to unbind all keys.
+    - /keyboard_bind same as /bind
+    - /keyboard_unbind same as /unbind
+
+Keybinds can use the following mods:
+    ! = alt
+    ^ = ctrl
+    @ = windows key
+    # = apps key
+    + = shift
+
+For example:
+    /bind !1 /wave - would bind Alt+1 to /wave when the keys are pressed down.
+    /bind ^1 /wave - would bind Ctrl+1 to /wave when the keys are pressed down.
+    /bind !1 up /wave - would bind Alt+1 to /wave when the keys are released.
+
+Memory Function Information
+    - mem:GetBaseAddress(modname) - Obtains the base address of the given module name.
+    - mem:UnprotectMemory(addr, size) - Unprotects the region of memory starting at the address.
+    - mem:FindPattern(modname, bytetable, size, mask) - Finds a pattern of data within the given module.
+    - mem:ReadUChar(addr)              - Read an unsigned char.
+    - mem:ReadChar(addr)               - Reads a signed char.
+    - mem:ReadUShort(addr)             - Reads an unsigned short.
+    - mem:ReadShort(addr)              - Reads a signed short.
+    - mem:ReadULong(addr)              - Reads an unsigned long.
+    - mem:ReadLong(addr)               - Reads a signed long.
+    - mem:ReadULonglong(addr)          - Reads an unsigned long long.
+    - mem:ReadLonglong(addr)           - Reads a signed long long.
+    - mem:ReadFloat(addr)              - Reads a float.
+    - mem:ReadDouble(addr)             - Reads a double.
+    - mem:ReadArray(addr, size)        - Reads an array.
+    - mem:ReadString(addr, size)       - Reads a string.
+    - mem:WriteUChar(addr, val)        - Writes an unsigned char.
+    - mem:WriteChar(addr, val)         - Writes a signed char.
+    - mem:WriteUShort(addr, val)       - Writes an unsigned short.
+    - mem:WriteShort(addr, val)        - Writes a signed short.
+    - mem:WriteULong(addr, val)        - Writes an unsigned long.
+    - mem:WriteLong(addr, val)         - Writes a signed long.
+    - mem:WriteULonglong(addr, val)    - Writes an unsigned long long.
+    - mem:WriteLonglong(addr, val)     - Writes a signed long long.
+    - mem:WriteFloat(addr, val)        - Writes a float.
+    - mem:WriteDouble(addr, val)       - Writes a double.
+    - mem:WriteArray(addr, val)        - Writes an array.
+    - mem:WriteString(addr, val)       - Writes a string.
+            </code>
+        </article>
+        
+        <!-- Version v2.0.0.3 -->
+        <article class="release">
+            <h3>v2.0.0.3</h3>
+            <span class="date">Released: 3.28.2014</span>
+            <div class="clear"></div>
+            <ul class="changelist">
+                <li class="blue"><span><b>ADD</b></span> /alias is now included in Ashita.</li>
+                <li class="blue"><span><b>ADD</b></span> /windowframe and /window_toggleframe commands to toggle the window frame on and off.</li>
+                <li class="orange"><span><b>CHG</b></span> Default font size is now 12 when an object is first created.</li>
+                <li class="blue"><span><b>ADD</b></span> Addons should now be more descriptive when they fail to load or fail an event.</li>
+                <li class="green"><span><b>FIX</b></span> Minor issue with the launcher not working for some.</li>
+                <li class="green"><span><b>FIX</b></span> Issue with plugins not loading at all due to memory bounds issues.</li>
+                <li class="orange"><span><b>CHG</b></span> ADK main header has been adjusted for the plugin issues.</li>
+                <li class="green"><span><b>FIX</b></span> Logging output for some plugin stuff was displayed as Error when it was not an error.</li>
+                <li class="green"><span><b>FIX</b></span> Issue with resource parser not parsing spells properly.</li>
+                <li class="orange"><span><b>CHG</b></span> Renamed default script to Default.txt</li>
+                <li class="green"><span><b>FIX</b></span> Crash with plugin commands not checking their arguments.</li>
+                <li class="blue"><span><b>ADD</b></span> Added newIDirectInputDevice8A.h to the ADK.</li>
+                <li class="green"><span><b>FIX</b></span> Plugin manager showing error in log when doing something successfully.</li>
+            </ul>
+        </article>
+    
+        <!-- Version v2.0.0.2 -->
+        <article class="release">
+            <h3>v2.0.0.2</h3>
+            <span class="date">Released: 3.28.2014</span>
+            <div class="clear"></div>
+            <ul class="changelist">
+                <li class="blue"><span><b>ADD</b></span> New plugin requirement function: GetInterfaceVersion</li>
+                <li class="blue"><span><b>ADD</b></span> Added ambient lighting commands.</li>
+                <li class="blue"><span><b>ADD</b></span> Luabind class_info function binding.</li>
+                <li class="green"><span><b>FIX</b></span> Minor issue with addons that don't implement load/unload events.</li>
+                <li class="green"><span><b>FIX</b></span> Several issues with injected packets.</li>
+                <li class="green"><span><b>FIX</b></span> Bug with locking font object positions.</li>
+                <li class="green"><span><b>FIX</b></span> Bug with keyboard wrapper.</li>
+                <li class="green"><span><b>FIX</b></span> Bug with script engine not working on all machines due to path issues.</li>
+                <li class="green"><span><b>FIX</b></span> Bug with controllers working in the background instead of the foreground.</li>
+            </ul>
+        </article>
+        
+        <!-- Version v2.0.0.1 -->
+        <article class="release">
+            <h3>v2.0.0.1</h3>
+            <span class="date">Released: 3.25.2014</span>
+            <div class="clear"></div>
+            <ul class="changelist">
+                <li class="green"><span><b>FIX</b></span> ParseAutoTranslate was not working at all.</li>
+                <li class="green"><span><b>FIX</b></span> Controllers not staying set to the focused window.</li>
+                <li class="green"><span><b>FIX</b></span> Controllers causing input when FFXI lost or gained focus.</li>
+                <li class="red"><span><b>REM</b></span> Test code that was accidentally left in.</li>
+                <li class="blue"><span><b>ADD</b></span> Implemented startup script, uses .txt scripts and not Lua!</li>
+                <li class="blue"><span><b>ADD</b></span> Internal chat messages now queue and print when finally logged into the game.</li>
+                <li class="blue"><span><b>ADD</b></span> Implemented plugin initialization for Direct3D.</li>
+                <li class="blue"><span><b>ADD</b></span> Scripts can now comment lines using # or // at the start of the line.</li>
+                <li class="blue"><span><b>ADD</b></span> ADK is now implemented into the release package and will be in the next update.</li>
+                <li class="blue"><span><b>ADD</b></span> InputManager is now added and exposed to obtain data for the mouse and keyboard.</li>
+                <li class="blue"><span><b>ADD</b></span> Full mouse blocking that was always requested in v1. The mouse will completely not work anymore if enabled.</li>
+                <li class="blue"><span><b>ADD</b></span> Luabind's function to class_info to allow people to print out an objects information that is exposed from Ashita.</li>
+                <li class="green"><span><b>FIX</b></span> Issue with packet handling not properly copying packets incoming and outgoing when injecting them.</li>
+                <li class="green"><span><b>FIX</b></span> Issue with addon functions AddOutgoingPacket and AddIncoming packet not properly copying packet data.</li>
+                <li class="blue"><span><b>ADD</b></span> Ability to hide/show all objects via the font manager.</li>
+                <li class="blue"><span><b>ADD</b></span> Added minimize command.</li>
+                <li class="red"><span><b>REM</b></span> Removed test font object.</li>
+            </ul>
+        </article>
+        
+        <!-- Version v2.0.0.0 -->
+        <article class="release">
+            <h3>v2.0.0.0</h3>
+            <span class="date">Released: 3.19.2014</span>
+            <div class="clear"></div>
+            <ul class="changelist">                       
+                <li class="blue"><span><b>ADD</b></span> Ashita's font objects are now moveable with the mouse by holding shift and clicking on them.</li>
+                <li class="orange"><span><b>CHG</b></span> Ashita's extensions are now referred to as plugins.</li>
+                <li class="orange"><span><b>CHG</b></span> Ashita's plugin interface is completely revamped and focused on minimizing breaking plugins when Ashita updates.</li>
+                <li class="orange"><span><b>CHG</b></span> Changed Ashita's GUI system from AnTweakBar to Gwen. (Thanks to MalRD's help with the Gwen renderer for Direct3D8!)</li>
+                <li class="green"><span><b>FIX</b></span> Fixed bug that would cause character movement when Ashita lost and regained focus. (Ex. alt+tab, or minimizing to tray.)</li>
+                <li class="green"><span><b>FIX</b></span> Fixed bug that would cause packets to be dropped improperly when handling a packet within a stacked packet chunk.</li>
+                <li class="green"><span><b>FIX</b></span> Fixed bug that would cause the mouse to not snap to the proper place when allowing the game to handle mouse movements.</li>
+                <li class="green"><span><b>FIX</b></span> Fixed bug that would cause Ashita to crash when sending commands to the game from a startup script.</li>
+            </ul>
+        </article>
+    </div>
+    
+    <footer class="wrapper footer">
+        <div class="wrapper wide">
+            <div class="container">
+                <div class="row">
+                    <div class="col4">
+                        <h2>Core Developers</h2>
+                        <ul>
+                            <li><a><span class="glyphicon glyphicon-user"></span> RZN</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> atom0s</a></li>
+                        </ul>
+                    </div>
+                    <div class="col4">
+                        <h2>Active Plugin Developers</h2>
+                        <ul>                            
+                            <li><a><span class="glyphicon glyphicon-user"></span> bluekirby0</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> h1pp0</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Lolwutt</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> kjLotus</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> MaIRD</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Praenuntiae</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Vicrelant</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Xenonsmurf</a></li>
+                        </ul>
+                    </div>
+                    <div class="col4">
+                        <h2>Inactive Plugin Developers</h2>
+                        <ul>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Apogee</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Hypnotoad</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Julian</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Nospheratu</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Praenuntiae</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Venrell</a></li>
+                        </ul>
+                    </div>
+                    <div class="col4">
+                        <h2>Third Party Thanks</h2>
+                        <ul>
+                            <li><a href="http://www.lua.org"><span class="glyphicon glyphicon-link"></span> Lua</a></li>
+                            <li><a href="https://github.com/decimad/luabind-deboostified"><span class="glyphicon glyphicon-link"></span> Luabind</a></li>
+                            <li><a href="https://github.com/garrynewman/GWEN"><span class="glyphicon glyphicon-link"></span> Gwen</a></li>
+                            <li><a href="http://research.microsoft.com/en-us/projects/detours/"><span class="glyphicon glyphicon-link"></span> Detours</a></li>
+                        </ul>
+                    </div>
+                    <div class="col12">
+                        <small>
+                            &copy; 2011-2014 Ashita Development Team <br />
+                            All FFXI content and images &copy; 2002-2013 SQUARE ENIX CO., LTD.<br />
+                            FINAL FANTASY is a registered trademark of Square Enix Co., Ltd..
+                        </small>
+                        <div style="float: right;">
+                            <img src="assets/valid-html5.png" alt="html5 valid"> 
+                            <img src="assets/valid-css.png" alt="css3 valid"> 
+                            <img src="assets/csstableless.gif" alt="css tableless">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#moogle').tooltip();
+        })
+        function collaspe(id) 
+        {
+            if (document.getElementById(id).style.display == "block") 
+                document.getElementById(id).style.display = "none";
+            else
+                document.getElementById(id).style.display = "block";
+        }
+    </script>
+</body>
+</html>

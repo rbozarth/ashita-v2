@@ -1,0 +1,1 @@
+ashita_boot.exe "main.lua"

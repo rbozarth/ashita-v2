@@ -1,0 +1,4 @@
+# Ignore Visual Studio Junk
+
+*.pdb
+*.exp
