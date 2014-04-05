@@ -35,23 +35,21 @@ local tparty_str_partymember_mp = "__tparty_party_mp";
 ashita.register_event('load', function()
     tparty_config.window_x      = ScriptEngine:GetConfigInt('boot_config', 'window_x', 800);
     tparty_config.window_y      = ScriptEngine:GetConfigInt('boot_config', 'window_y', 600);
-    tparty_config.background_x  = ScriptEngine:GetConfigInt('boot_config', 'background_x', 2048);
-    tparty_config.background_y  = ScriptEngine:GetConfigInt('boot_config', 'background_y', 2048);
-    tparty_config.menu_x        = ScriptEngine:GetConfigInt('boot_config', 'menu_x', 2048);
-    tparty_config.menu_y        = ScriptEngine:GetConfigInt('boot_config', 'menu_y', 2048);
+    tparty_config.menu_x        = ScriptEngine:GetConfigInt('boot_config', 'menu_x', 0);
+    tparty_config.menu_y        = ScriptEngine:GetConfigInt('boot_config', 'menu_y', 0);
     
     -- Validate the configuration data..
     if (tparty_config.menu_x <= 0) then
-        tparty_config.menu_x = tparty_config.background_x;
+        tparty_config.menu_x = tparty_config.window_x;
     end
     if (tparty_config.menu_y <= 0) then
-        tparty_config.menu_y = tparty_config.background_y;
+        tparty_config.menu_y = tparty_config.window_y;
     end
     
     -- Calculate the scaling..
     tparty_config.scaleX = tparty_config.window_x / tparty_config.menu_x;
     tparty_config.scaleY = tparty_config.window_y / tparty_config.menu_y;
-    
+        
     -- Create the main target hp% text object..
     local targHP = AshitaCore:GetFontManager():CreateFontObject( tparty_str_targethpp );
     targHP:SetFont('Arial', 8 * tparty_config.scaleY);

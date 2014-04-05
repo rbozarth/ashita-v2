@@ -200,15 +200,14 @@ struct IItem
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 struct IChatManager
 {
-    virtual void ParseCommand(const Ashita::AS_String& command, int nCommandType) = 0;
-    virtual void QueueCommand(const Ashita::AS_String& command, int nCommandType) = 0;
-    virtual void AddChatMessage(int nMode, const Ashita::AS_String& message) = 0;
+    virtual void ParseCommand(const char* command, int nCommandType) = 0;
+    virtual void QueueCommand(const char* command, int nCommandType) = 0;
+    virtual void AddChatMessage(int nMode, const char* message) = 0;
     virtual int ParseAutoTranslate(const char* message, char* pszBuffer, int nBufferLength, bool bAddBrackets) = 0;
     virtual const char* GetInputText(void) const = 0;
-    virtual void SetInputText(const Ashita::AS_String& message) = 0;
-    virtual void RunTextScript(bool bUseTaskQueue, const Ashita::AS_String& script) = 0;
+    virtual void SetInputText(const char* message) = 0;
+    virtual void RunTextScript(bool bUseTaskQueue, const char* script) = 0;
     virtual void Write(const char* format, ...) = 0;
-    virtual void Write(const Ashita::AS_String& message) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -259,8 +258,8 @@ struct IKeyboard : newIDirectInputDevice8A
     virtual unsigned int S2D(const char* pszKey) = 0;
     virtual const char* D2S(unsigned int key) = 0;
 
-    virtual void AddCallback(const Ashita::AS_String& alias, LPVOID lpGetDataCallback, LPVOID lpGetStateCallback, LPVOID lpKeyboardCallback) = 0;
-    virtual void RemoveCallback(const Ashita::AS_String& alias) = 0;
+    virtual void AddCallback(const char* alias, LPVOID lpGetDataCallback, LPVOID lpGetStateCallback, LPVOID lpKeyboardCallback) = 0;
+    virtual void RemoveCallback(const char* alias) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -315,9 +314,9 @@ struct IPluginManager
 {
     virtual int GetPluginCount(void) = 0;
 
-    virtual bool LoadPlugin(const Ashita::AS_String& name) = 0;
-    virtual bool UnloadPlugin(const Ashita::AS_String& name) = 0;
-    virtual void* GetPlugin(const Ashita::AS_String& name) = 0;
+    virtual bool LoadPlugin(const char* name) = 0;
+    virtual bool UnloadPlugin(const char* name) = 0;
+    virtual void* GetPlugin(const char* name) = 0;
     virtual void* GetPlugin(int nIndex) = 0;
 };
 
@@ -330,7 +329,7 @@ struct IPluginManager
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 struct IPointerManager
 {
-    virtual unsigned int GetPointer(const std::string& name) = 0;
+    virtual unsigned int GetPointer(const char* name) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -513,8 +512,8 @@ struct IEntity
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 struct IPrimitiveObject
 {
-    virtual void SetTextureFromFile(const Ashita::AS_String& path) = 0;
-    virtual void SetTextureFromResource(HMODULE hModule, const Ashita::AS_String& resource) = 0;
+    virtual void SetTextureFromFile(const char* path) = 0;
+    virtual void SetTextureFromResource(HMODULE hModule, const char* resource) = 0;
 
     virtual bool GetVisibility(void) const = 0;
     virtual float GetPositionX(void) const = 0;
@@ -554,10 +553,10 @@ struct IFontObject
     virtual void GetTextSize(SIZE* lpSize) const = 0;
 
     virtual void SetColor(D3DCOLOR color) = 0;
-    virtual void SetFont(const Ashita::AS_String& font, int nHeight) = 0;
+    virtual void SetFont(const char* font, int nHeight) = 0;
     virtual void SetPosition(float fPosX, float fPosY) = 0;
     virtual void SetLockPosition(bool bLocked) = 0;
-    virtual void SetText(const std::string& text) = 0;
+    virtual void SetText(const char* text) = 0;
     virtual void SetVisibility(bool bVisible) = 0;
     virtual void SetBold(bool bBold) = 0;
     virtual void SetItalic(bool bItalic) = 0;
@@ -575,9 +574,9 @@ struct IFontObject
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 struct IFontManager
 {
-    virtual IFontObject* CreateFontObject(const Ashita::AS_String& alias) = 0;
-    virtual IFontObject* GetFontObject(const Ashita::AS_String& alias) = 0;
-    virtual void DeleteFontObject(const Ashita::AS_String& alias) = 0;
+    virtual IFontObject* CreateFontObject(const char* alias) = 0;
+    virtual IFontObject* GetFontObject(const char* alias) = 0;
+    virtual void DeleteFontObject(const char* alias) = 0;
 
     virtual bool GetHideObjects(void) const = 0;
     virtual void SetHideObjects(bool bHide) = 0;
@@ -745,15 +744,15 @@ struct IAshitaCore
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 struct IScriptEngine
 {
-    virtual bool RunScript(const Ashita::AS_String& script, bool bSilent = false) = 0;
-    virtual bool RunString(const Ashita::AS_String& str) = 0;
+    virtual bool RunScript(const char* script, bool bSilent = false) = 0;
+    virtual bool RunString(const char* str) = 0;
 
-    virtual bool GetConfigString(const Ashita::AS_String& className, const Ashita::AS_String& name, LPVOID lpOutput) = 0;
-    virtual Ashita::AS_String GetConfigString(const Ashita::AS_String& className, const Ashita::AS_String& name) = 0;
-    virtual bool GetConfigBool(const Ashita::AS_String& className, const Ashita::AS_String& name, bool defaultValue) = 0;
-    virtual int GetConfigInt(const Ashita::AS_String& className, const Ashita::AS_String& name, int defaultValue) = 0;
-    virtual float GetConfigFloat(const Ashita::AS_String& className, const Ashita::AS_String& name, float defaultValue) = 0;
-    virtual double GetConfigDouble(const Ashita::AS_String& className, const Ashita::AS_String& name, double defaultValue) = 0;
+    virtual bool GetConfigString(const char* className, const char* name, LPVOID lpOutput) = 0;
+    virtual Ashita::AS_String GetConfigString(const char* className, const char* name) = 0;
+    virtual bool GetConfigBool(const char* className, const char* name, bool defaultValue) = 0;
+    virtual int GetConfigInt(const char* className, const char* name, int defaultValue) = 0;
+    virtual float GetConfigFloat(const char* className, const char* name, float defaultValue) = 0;
+    virtual double GetConfigDouble(const char* className, const char* name, double defaultValue) = 0;
 
     virtual lua_State* GetState(void) const = 0;
 };
@@ -789,10 +788,10 @@ struct PluginData
     /**
      * @brief Overload Constructor
      */
-    PluginData(const Ashita::AS_String& name, const Ashita::AS_String& author, double dblInterfaceVersion, double dblPluginVersion, int nPriority)
+    PluginData(const char* name, const char* author, double dblInterfaceVersion, double dblPluginVersion, int nPriority)
     {
-        strcpy_s(this->Name, sizeof(this->Name), name.ascii().c_str());
-        strcpy_s(this->Author, sizeof(this->Author), author.ascii().c_str());
+        strcpy_s(this->Name, sizeof(this->Name), name);
+        strcpy_s(this->Author, sizeof(this->Author), author);
         this->InterfaceVersion = dblInterfaceVersion;
         this->PluginVersion = dblPluginVersion;
         this->Priority = nPriority;
@@ -966,7 +965,7 @@ public:
      */
     bool Direct3DInitialize(IDirect3DDevice8* lpDevice)
     {
-        this->m_Direct3DDevice;
+        this->m_Direct3DDevice = lpDevice;
         return false;
     }
 

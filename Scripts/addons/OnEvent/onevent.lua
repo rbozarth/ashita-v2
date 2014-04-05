@@ -109,9 +109,9 @@ ashita.register_event('command', function(cmd, nType)
         
         -- Attempt to locate and remove the action..
         for x = 1, #onevent.events do
-            if (onevent.events[x][1] == args[3]) then
+            if (onevent.events[x][1] == cmd:sub(cmd:find(" ", cmd:find(" ") + 1) + 1)) then
                 table.remove(onevent.events, x);
-                print(string.format('[OnEvent] Removed: %s', args[3]));
+                print(string.format('[OnEvent] Removed: %s', cmd:sub(cmd:find(" ", cmd:find(" ") + 1) + 1)));
                 return true;
             end
         end

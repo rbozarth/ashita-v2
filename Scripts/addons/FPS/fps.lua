@@ -77,8 +77,6 @@ ashita.register_event('unload', function()
     
     -- Cleanup our font object..
     AshitaCore:GetFontManager():DeleteFontObject( '__fps_addon' );
-    
-    
 end );
 
 ---------------------------------------------------------------------------------------------------
@@ -95,7 +93,7 @@ ashita.register_event('command', function(cmd, nType)
     end
     
     -- Toggle showing the fps string..
-    if (args[2] == 'show') then
+    if (#args == 1 or args[2] == 'show') then
         fps.show = not fps.show;
         return true;
     end
@@ -145,7 +143,7 @@ ashita.register_event('command', function(cmd, nType)
         return true;
     end
     
-    return false;
+    return true;
 end );
 
 ---------------------------------------------------------------------------------------------------

@@ -42,6 +42,51 @@
 
     <!-- Changelog -->
     <div class="container changelog">
+        <!-- Version v2.0.0.6 -->
+        <article class="release">
+            <h3>v2.0.0.6</h3>
+            <span class="date">Released: 4.04.2014</span>
+            <div class="clear"></div>
+            <ul class="changelist">
+                <li class="green"><span><b>FIX</b></span> Fixed issue with plugins not receiving render and prerender events.</li>
+                <li class="blue"><span><b>ADD</b></span> Added keyboard callbacks for plugins to attach to keyboard data.</li>
+                <li class="orange"><span><b>CHG</b></span> Adjusted how the keyboard blocks key data to allow callbacks to work while the game is out of focus.</li>
+                <li class="orange"><span><b>CHG</b></span> Adjusted the order of how things render. (Font -> Plugins -> Addons -> Gui)</li>
+                <li class="orange"><span><b>CHG</b></span> Adjusted plugin loading output to show the proper name and not what the user typed to load the plugin.</li>
+                <li class="blue"><span><b>ADD</b></span> PluginManager will now inform the user if a plugin is already loaded when trying to load a plugin.</li>
+                <li class="blue"><span><b>ADD</b></span> Added output from the plugin manager when a plugin is unloaded.</li>
+                <li class="green"><span><b>FIX</b></span> Issue with ItemEntry fields all returning the item id instead of their proper values.</li>
+                <li class="green"><span><b>FIX</b></span> Fixed issue with TParty not properly setting its position on altered menu resolutions.</li>
+                <li class="orange"><span><b>CHG</b></span> Rewrote the command handler some to cleanup various commands and to prevent more crashes.</li>
+                <li class="orange"><span><b>CHG</b></span> Rewrote certain command handler entries to output syntax info on incorrect usage.</li>
+                <li class="orange"><span><b>CHG</b></span> Adjusted order of when addons obtain commands. (Plugins -> Addons -> Ashita -> Game)</li>
+                <li class="blue"><span><b>ADD</b></span> /alias command now binds alias' without requiring add sub-command. (Ex. /alias derp /say derp)</li>
+                <li class="blue"><span><b>ADD</b></span> New command /maximize to maximize the FFXI window.</li>
+                <li class="green"><span><b>FIX</b></span> Some minor issues with /addon commands.</li>
+                <li class="orange"><span><b>CHG</b></span> Adjusted when the startup script (if any was defined) is executed.</li>
+                <li class="orange"><span><b>CHG</b></span> Massive overhaul on the usage of Ashita::AS_String in the core. This is no longer used for the interface exposed functions.</li>
+                <li class="green"><span><b>FIX</b></span> Addons not unloading when the game was closed.</li>
+                <li class="green"><span><b>FIX</b></span> Bug with plugin manager not properly unloading plugins when closing the game.</li>
+                <li class="orange"><span><b>CHG</b></span> Reordered the process of how managers internally are unloaded to help prevent crashes.</li>
+                <li class="orange"><span><b>CHG</b></span> Updated the Default.txt to have an actual format and load common data.</li>
+            </ul>
+            <div class="clear"></div>
+            <br/>
+            <div class="expand" onClick="collaspe('2006info')"><b>+ Expand Information</b></div>
+            <code id="2006info" style="display: none">
+ADK Interface Overhaul
+    This update includes a semi-massive overhaul to the ADK interface. Ashita::AS_String is no
+    longer used as param types. Instead everything is hard-coded to be const char*. This change
+    was done to reduce the conversion cost between the various types. There is a lot of overhead
+    when just using a simple string like "Hello" and passing it as a param that required AS_String.
+    
+    Instead, any needed conversion will be done inside the hook core now instead of between the interface calls.
+    
+WindowerInput
+    WindowerInput plugin has been introduced in this version. Third-party applications should now work with Ashita v2.
+            </code>
+        </article>
+        
         <!-- Version v2.0.0.5 -->
         <article class="release">
             <h3>v2.0.0.5</h3>
