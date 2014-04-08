@@ -17,6 +17,11 @@
  *
 ]]--
 
+local color = { };
+
+__ashita_libs = __ashita_libs or { };
+__ashita_libs.color = color;
+
 ---------------------------------------------------------------------------------------------------
 -- func: get_ffxi_color
 -- desc: Converts the given number to its proper FFXI color code.

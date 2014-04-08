@@ -17,6 +17,11 @@
  *
 ]]--
 
+local tableex = { };
+
+__ashita_libs = __ashita_libs or { };
+__ashita_libs.tableex = tableex;
+
 ---------------------------------------------------------------------------------------------------
 -- func : table.copy
 -- desc : Creates a deep copy of a table.

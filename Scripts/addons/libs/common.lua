@@ -21,8 +21,10 @@
 -- Includes commonly used Lua files for an addon.
 --
 
+require 'color'
+require 'log'
 require 'mathex'
-require 'settings'
+settings = require 'settings'
 require 'stringex'
 require 'tableex'
 

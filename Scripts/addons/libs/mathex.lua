@@ -17,6 +17,11 @@
  *
 ]]--
 
+local mathex = { };
+
+__ashita_libs = __ashita_libs or { };
+__ashita_libs.mathex = mathex;
+
 ----------------------------------------------------------------------
 -- func : math.Distance2D
 -- desc : Determines the 2D distance between two objects.

@@ -17,6 +17,10 @@
  *
 ]]--
 
+local stringex = { };
+
+__ashita_libs = __ashita_libs or { };
+__ashita_libs.stringex = stringex;
 ---------------------------------------------------------------------------------------------------
 -- func : string.Contains
 -- desc : Determines if the string contains the given string.

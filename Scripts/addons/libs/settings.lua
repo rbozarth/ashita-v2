@@ -17,8 +17,11 @@
  *
 ]]--
 
-settings = settings or { };
-settings.JSON = require 'JSON.json'
+local settings = { };
+
+__ashita_libs = __ashita_libs or { };
+__ashita_libs.settings = settings;
+__ashita_libs.settings.JSON = __ashita_libs.settings.JSON or require 'JSON.json';
 
 ----------------------------------------------------------------------
 -- func : settings.save
@@ -70,3 +73,5 @@ function settings:load(name)
 
     return nil;
 end
+
+return settings;
