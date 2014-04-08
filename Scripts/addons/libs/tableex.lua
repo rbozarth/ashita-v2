@@ -17,10 +17,10 @@
  *
 ]]--
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : table.copy
 -- desc : Creates a deep copy of a table.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function table.copy( t )
     if type( t ) ~= 'table' then return t; end
     
@@ -38,10 +38,10 @@ function table.copy( t )
     return copy;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : table.count
 -- desc : Counts the number of entries in a table.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function table.count( t )
     local x = 0;
     for k, _ in pairs( t ) do
@@ -50,10 +50,10 @@ function table.count( t )
     return x;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : table.haskey
 -- desc : Determines if a table has the given key.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function table.haskey( t, key )
     for k, v in pairs( t ) do
         if k == key then return true; end
@@ -61,10 +61,10 @@ function table.haskey( t, key )
     return false;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : table.hasvalue
 -- desc : Determines if a table has the given value.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function table.hasvalue( t, val )
     for k, v in pairs( t ) do
         if v == val then return true; end
@@ -72,10 +72,10 @@ function table.hasvalue( t, val )
     return false;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : table.merge
 -- desc : Merges two tables together.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function table.merge(src, dest)
     for k, v in pairs(src) do
         if (type(v) == 'table') then
@@ -93,20 +93,20 @@ function table.merge(src, dest)
     return dest;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : table.nil
 -- desc : Terminate all values in a table.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function table.Nil( t )
     for k, v in pairs( t ) do
         t[ k ] = nil;
     end
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : table.Reverse
 -- desc : Reverses a table.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function table.reverse( t )
     local len = #t;
     local ret = { };
@@ -117,10 +117,10 @@ function table.reverse( t )
     return ret;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : table.sortbykey
 -- desc : Sorts a table by its keys, in the given order.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function table.sortbykey( t, desc )
     local temp = { };
     for k, _ in pairs( t ) do table.insert( temp, k ); end
@@ -132,4 +132,72 @@ function table.sortbykey( t, desc )
     end
     
     return temp;    
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : table.sum
+-- desc : Adds all numerical values found in the table together and returns the result.
+---------------------------------------------------------------------------------------------------
+function table.sum( t )
+    local ret = 0;
+    for k, v in ipairs(t) do
+        if (type(v) == 'number') then
+            ret = ret + v;
+        end
+    end
+    return ret;
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : table.mult
+-- desc : Multiplies all numerical values found in the table together and returns the result.
+---------------------------------------------------------------------------------------------------
+function table.mult( t )
+    local ret = 1;
+    for k, v in ipairs(t) do
+        if (type(v) == 'number') then
+            ret = ret * v;
+        end
+    end
+    return ret;
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : table.min
+-- desc : Returns the lowest found numerical value in the main table.
+---------------------------------------------------------------------------------------------------
+function table.min( t )
+    local ret = nil;
+    for k, v in ipairs(t) do
+        if (type(v) == 'number') then
+            if (ret == nil) then
+                ret = v;
+            else
+                if (v < ret) then
+                    ret = v;
+                end
+            end
+        end
+    end
+    return ret;
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : table.max
+-- desc : Returns the highest found numerical value in the main table.
+---------------------------------------------------------------------------------------------------
+function table.max( t )
+    local ret = nil;
+    for k, v in ipairs(t) do
+        if (type(v) == 'number') then
+            if (ret == nil) then
+                ret = v;
+            else
+                if (v > ret) then
+                    ret = v;
+                end
+            end
+        end
+    end
+    return ret;
 end

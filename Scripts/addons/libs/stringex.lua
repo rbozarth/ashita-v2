@@ -17,21 +17,106 @@
  *
 ]]--
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : string.Contains
 -- desc : Determines if the string contains the given string.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function string.contains( s, p )
-    if( s:find( p ) == nil) then
-        return false;
-    end
-    return true;
+    return s:find(p, nil, true) ~= nil;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func : string.startswith
+-- desc : Determines if the string starts with the given second string.
+---------------------------------------------------------------------------------------------------
+function string.startswith( s, s2 )
+    return s:sub( 1, #s2 ) == s2;
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : string.endswith
+-- desc : Determines if the string ends with the given second string.
+---------------------------------------------------------------------------------------------------
+function string.endswith( s, s2 )
+    return s:sub( -#s2 ) == s2;
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : string.upperfirst
+-- desc : Capitalizes the first character of the given string.
+---------------------------------------------------------------------------------------------------
+function string.upperfirst( s )
+    return s:sub(1, 1):upper() .. s:sub(2);
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : string.topropercase
+-- desc : Converts the first character of every word to capital.
+---------------------------------------------------------------------------------------------------
+function string.topropercase( s )
+    local ret = '';
+    local t = { };
+    for x = 1, s:len() do
+        t[x] = s:sub(x, x);
+        if (t[x-1] == ' ' or x == 1) then
+            t[x] = t[x]:upperfirst();
+        end
+        ret = ret .. t[x];
+    end
+    return ret;
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : string.insert
+-- desc : Inserts the given string into the given position.
+---------------------------------------------------------------------------------------------------
+function string.insert( s, p, s2 )
+    local part1 = s:sub( 1, p - 1 );
+    return part1 .. s2 .. s:sub( #part1 + 1);
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : string.lpad
+-- desc : Pads the first string with the second on the left til the length is met.
+---------------------------------------------------------------------------------------------------
+function string.lpad( s, s2, n )
+    return (s2:rep(n) .. s):sub(-(n > #s and n or #s));
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : string.rpad
+-- desc : Pads the first string with the second on the right til the length is met.
+---------------------------------------------------------------------------------------------------
+function string.rpad( s, s2, n )
+    return (s .. s2:rep(n)):sub(1, -(n > #s and n or #s));
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : string.hex
+-- desc : Converts the given string to a hex string of each character.
+---------------------------------------------------------------------------------------------------
+function string.hex( s, sep )
+    sep = sep or ' ';
+    local ret = '';
+    for k, v in pairs(s:totable()) do
+        ret = ret .. string.format('%02X', v) .. sep;
+    end
+    return ret:trim();
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : string.fromhex
+-- desc : Converts the given hex string to its text format.
+---------------------------------------------------------------------------------------------------
+function string.fromhex(s)
+    s = s:gsub('%s*0x', ''):gsub('[^%w]', '');
+    return (s:gsub('%w%w', function(c) return string.char(tonumber(c, 16)); end));
+end
+
+---------------------------------------------------------------------------------------------------
 -- func : string.ToTable
 -- desc : Converts the string chars to a byte table.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function string.totable( s )
     local t = { };
     for x = 1, string.len( s ) do
@@ -40,10 +125,24 @@ function string.totable( s )
     return t
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+-- func : string.clean
+-- desc : Cleans the whitespace of a string.
+---------------------------------------------------------------------------------------------------
+function string.clean( s, trimend )
+    if trimend == nil then trimend = true; end
+
+    if trimend then
+        return s:gsub('%s+', ' '):trim();
+    else
+        return (s:gsub('%s+', ' '));
+    end
+end
+
+---------------------------------------------------------------------------------------------------
 -- func : string.TrimStart
 -- desc : Trims whitespace from the left side of the string.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function string.trimstart( s, char )
     if (not char) then char = ' ' end
     s = string.reverse( s );
@@ -51,10 +150,10 @@ function string.trimstart( s, char )
     return string.reverse( s );
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : string.TrimEnd
 -- desc : Trims whitespace from the right side of the string.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function string.trimend( s, char )
     if (not char) then char = ' ' end
     if (string.sub( s, -1 ) == char) then
@@ -64,10 +163,10 @@ function string.trimend( s, char )
     return s;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : string.trim
 -- desc : Trims whitespace from both sides of the given string.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function string.trim( s, char )
     if (not char) then char = ' ' end
     s = string.trimstart( s, char );
@@ -75,10 +174,10 @@ function string.trim( s, char )
     return s;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : string.GetArgs
 -- desc : Parses the string for command arguments.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function string:GetArgs()
     local STATE_NONE 	= 0;
     local STATE_WORD 	= 1;
@@ -136,26 +235,26 @@ function string:GetArgs()
     return args;
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : string:IsQuotedArg
 -- desc : Determines if this is a quoted command argument.
 -- retn : First value returned: True if this is a quoted argument, else False.
 --        Second value returned: The text within quotes (including an empty string).
 --        If it's not quoted text, the second value will be nil.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function string:IsQuotedArg()
     local arg = string.match( self, "^\"(.*)\"$" );
     return ( arg ~= nil ), arg
 end
 
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 -- func : string.ParseArgs
 -- desc : Parses the string for command arguments.
 -- retn : Table of found arguments.
 --
 -- note : Modified version of GetArgs to read and parse non-standard
 --        game cmomands.
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 function string:ParseArgs()
     local STATE_NONE    = 0;
     local STATE_WORD    = 1;
