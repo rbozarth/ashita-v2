@@ -36,7 +36,7 @@
 #define HANDLECOMMAND_04(a, b, c, d)    Ashita::CommandHandler::__command_parse(args[0].c_str(), a, b, c, d)
 #define HANDLECOMMAND_05(a, b, c, d, e) Ashita::CommandHandler::__command_parse(args[0].c_str(), a, b, c, d, e)
 #define HANDLECOMMAND_CC(...)           HANDLECOMMAND_GA(__VA_ARGS__, HANDLECOMMAND_05, HANDLECOMMAND_04, HANDLECOMMAND_03, HANDLECOMMAND_02, HANDLECOMMAND_01,)
-#define HANDLECOMMAND(...)              if(HANDLECOMMAND_CC(__VA_ARGS__)(__VA_ARGS__))
+#define HANDLECOMMAND(...)              if(args.size() > 0 && HANDLECOMMAND_CC(__VA_ARGS__)(__VA_ARGS__))
 
 namespace Ashita
 {
