@@ -20,6 +20,9 @@
 ##########################################################################
 
 /load WindowerInput
+/load Paste
+/load Screenshot
+/load Timestamp
 
 ##########################################################################
 # Set Common Settings
@@ -31,6 +34,8 @@
 # Set Common Keybinds
 ##########################################################################
 
+/bind SYSRQ /screenshot hide
+/bind ^v /paste
 /bind F11 /ambient
 /bind F12 /fps show
 /bind ^F1 /input /ta <a10>
