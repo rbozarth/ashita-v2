@@ -29,7 +29,7 @@ require 'stringex'
 -- desc: Prints the given string to the chat log in the given color.
 ---------------------------------------------------------------------------------------------------
 function log_string(color, type, ...)
-    local t = table.concat({table.concat({color, '[', _addon.name, '] '}, ''), unpack({...})}, ' '):trim();
+    local t = table.concat({table.concat({color, '[ADDON] ', type, '(', _addon.name, ') '}, ''), unpack({...})}, ' '):trim();
     AshitaCore:GetChatManager():AddChatMessage(200, t:clean());
 end
 
@@ -46,7 +46,7 @@ end
 -- desc: Prints an error message to the chat log.
 ---------------------------------------------------------------------------------------------------
 function log_error(...)
-    log_string('\31\167', 'Error', ...);
+    log_string('\31\167', 'Error: ', ...);
 end
 
 ---------------------------------------------------------------------------------------------------
@@ -54,5 +54,5 @@ end
 -- desc: Prints a warning message to the chat log.
 ---------------------------------------------------------------------------------------------------
 function log_warning(...)
-    log_string('\30\207', 'Warning', ...);
+    log_string('\30\207', 'Warning: ', ...);
 end

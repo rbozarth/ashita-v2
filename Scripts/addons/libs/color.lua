@@ -68,4 +68,3 @@ function string.stripautotrans( s )
     s = (s:gsub(string.char(0xEF)..'['..string.char(0x27, 0x28)..']', ''));
     return (s:gsub(string.char(0xFD)..'....'..string.char(0xFD), ''));
 end
-

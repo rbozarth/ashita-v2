@@ -21,6 +21,7 @@ local stringex = { };
 
 __ashita_libs = __ashita_libs or { };
 __ashita_libs.stringex = stringex;
+
 ---------------------------------------------------------------------------------------------------
 -- func : string.Contains
 -- desc : Determines if the string contains the given string.
@@ -77,6 +78,14 @@ end
 function string.insert( s, p, s2 )
     local part1 = s:sub( 1, p - 1 );
     return part1 .. s2 .. s:sub( #part1 + 1);
+end
+
+---------------------------------------------------------------------------------------------------
+-- func : string.remove
+-- desc : Removes the character at the given index.
+---------------------------------------------------------------------------------------------------
+function string.remove(s, index)
+    return s:sub(0, index - 1) .. s:sub(index + 1);
 end
 
 ---------------------------------------------------------------------------------------------------

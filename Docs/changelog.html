@@ -42,22 +42,56 @@
 
     <!-- Changelog -->
     <div class="container changelog">
+        <!-- Version v2.0.0.9 -->
+        <article class="release">
+            <h3>v2.0.0.9</h3>
+            <span class="date">Released: 4.14.2014 (This log includes updates that were pushed after 2.0.0.8 was released.)</span> 
+            <div class="clear"></div>
+            <ul class="changelist">
+                <li class="green"><span><b>FIX</b></span> Fixed inclusion loops with addon libraries.</li>
+                <li class="green"><span><b>CHG</b></span> Rewrote the plugin manager entirely to adjust for several lockups.</li>
+                <li class="green"><span><b>FIX</b></span> Fixed issue when two or more plugins were loaded, Ashita would freeze.</li>
+                <li class="blue"><span><b>ADD</b></span> Some more detailed output from the plugin manager for loading and unloading plugins.</li>
+                <li class="green"><span><b>FIX</b></span> Issue with chat manager pointer.</li>
+                <li class="green"><span><b>FIX</b></span> Issue with log message pointer.</li>
+                <li class="green"><span><b>FIX</b></span> Issue where plugins that altered new chat lines would not effect the result.</li>
+                <li class="green"><span><b>FIX</b></span> Issue with dir_exists always returning true.</li>
+                <li class="green"><span><b>FIX</b></span> Issue where command parser could crash the game with no command.</li>
+                <li class="blue"><span><b>ADD</b></span> Recast addon.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) file:get_install_dir - Returns the given installation path for FFXI, POL, Tetramaster etc.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) file:get_dirs - Gets a list of directories within the given path.</li>
+                <li class="green"><span><b>CHG</b></span> (Addons) newchat now accepts two return values.
+                <code style="margin-left:40px;">- The first is always a boolean if the line should be blocked.
+- The second is a string that will overwrite the current chat text. (This return is optional!)</code></li>
+                <li class="green"><span><b>CHG</b></span> (Addons) incoming_packet and outgoing_packet now accepts two return values.
+                <code style="margin-left:40px;">- The first is always a boolean if the packet should be blocked.
+- The second is a table of the new packet data to overwrite the current one with. (This return is optional!)</code></li>
+                <li class="green"><span><b>FIX</b></span> Typo in OnEvent addon.</li>
+                <li class="green"><span><b>CHG</b></span> (Addon) Log library now prints out the addon using the log functions.</li>
+                <li class="green"><span><b>CHG</b></span> (Addon) Settings library now automatically creates the directory for the settings file if it does not exist.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addon) file.normalize_path(path) and file.path_from_dir(dir) inside of the settings library.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addon) string.remove(s, index) to the string library.</li>
+                <li class="green"><span><b>CHG</b></span> Internal code for addon handling has been massively overhauled and cleaned up.</li>
+                <li class="green"><span><b>FIX</b></span> Minor issue with SetInputText's carrot injection.</li>
+            </ul>
+        </article>
+        
         <!-- Version v2.0.0.8 -->
         <article class="release">
             <h3>v2.0.0.8</h3>
             <span class="date">Released: 4.07.2014</span>
             <div class="clear"></div>
             <ul class="changelist">
-                <li class="green"><span><b>FIX</b></span> Fixed: Minor bug with obtaining entity objects.</li>
-                <li class="blue"><span><b>ADD</b></span> Added: (Addons) file table for misc file related functions.</li>
-                <li class="blue"><span><b>ADD</b></span> Added: (Addons) misc table for misc helpful functions.</li>
-                <li class="blue"><span><b>ADD</b></span> Added: (Addons) sound table for sound related functions.</li>
-                <li class="blue"><span><b>ADD</b></span> Added: (Addons) GetEntity(index) - Returns an entity at the given index.</li>
-                <li class="blue"><span><b>ADD</b></span> Added: (Addons) GetPlayerEntity() - Returns the current players entity.</li>
-                <li class="blue"><span><b>ADD</b></span> Added: (Addons) string.insert, string.hex, string.fromhex, string.clean, string.startswith, string.endswith, string.upperfirst, string.topropercase, string.lpad, string.rpad</li>
-                <li class="blue"><span><b>ADD</b></span> Added: (Addons) table.sum, table.mult, table.min, table.max</li>
-                <li class="blue"><span><b>ADD</b></span> Added: (Addons) log library for simple log output to the game chatlog. (Includes: log_message, log_warning, log_error)</li>
-                <li class="blue"><span><b>ADD</b></span> Added: (Addons) color library for generating FFXI specific color strings for the chat log. (Includes: get_ffxi_color, string.color, string.stripcolor, string.stripautotrans)</li>
+                <li class="green"><span><b>FIX</b></span> Minor bug with obtaining entity objects.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) file table for misc file related functions.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) misc table for misc helpful functions.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) sound table for sound related functions.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) GetEntity(index) - Returns an entity at the given index.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) GetPlayerEntity() - Returns the current players entity.</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) string.insert, string.hex, string.fromhex, string.clean, string.startswith, string.endswith, string.upperfirst, string.topropercase, string.lpad, string.rpad</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) table.sum, table.mult, table.min, table.max</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) log library for simple log output to the game chatlog. (Includes: log_message, log_warning, log_error)</li>
+                <li class="blue"><span><b>ADD</b></span> (Addons) color library for generating FFXI specific color strings for the chat log. (Includes: get_ffxi_color, string.color, string.stripcolor, string.stripautotrans)</li>
             </ul>
         </article>
         
