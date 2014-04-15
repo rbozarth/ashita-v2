@@ -366,6 +366,11 @@ struct IResourceManager
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 struct IEntity
 {
+    /**
+     * @brief Plugins SHOULD NOT use this function! Use the get/set functions instead!
+     */
+    virtual Ashita::FFXI::Entity* GetEntity(unsigned int nIndex) const = 0;
+
     virtual float GetLocalX(unsigned int nIndex) const = 0;
     virtual float GetLocalY(unsigned int nIndex) const = 0;
     virtual float GetLocalZ(unsigned int nIndex) const = 0;
