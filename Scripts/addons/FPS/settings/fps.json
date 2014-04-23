@@ -2,7 +2,7 @@
       "font": {
                      "color": -65536,
                       "name": "arial",
-                  "position": [ 1, 1 ],
+                  "position": [ 3, 3 ],
                       "size": 12
               },
     "format": "FPS: %.1f"

@@ -212,20 +212,6 @@ struct IChatManager
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// IGuiManager
-//
-// Ashita Gui manager that exposes the internal Gui's main canvas object.
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////
-struct IGuiManager
-{
-    virtual LPVOID GetCanvas(void) const = 0;
-    virtual LPVOID GetRenderer(void) const = 0;
-    virtual LPVOID GetSkin(void) const = 0;
-};
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-//
 // Keyboard Callback Typedefs
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -426,7 +412,7 @@ struct IEntity
     virtual unsigned int GetClaimID(unsigned int nIndex) const = 0;
     virtual unsigned short GetAnimationTick(unsigned int nIndex) const = 0;
     virtual unsigned short GetAnimationStep(unsigned int nIndex) const = 0;
-    virtual unsigned short GetAnimationPlay(unsigned int nIndex) const = 0;
+    virtual unsigned char GetAnimationPlay(unsigned int nIndex) const = 0;
     virtual unsigned int GetEmoteID(unsigned int nIndex) const = 0;
     virtual unsigned int GetSpawnFlags(unsigned int nIndex) const = 0;
     virtual unsigned int GetLinkshellColor(unsigned int nIndex) const = 0;
@@ -494,7 +480,7 @@ struct IEntity
     virtual void SetClaimID(unsigned int nIndex, unsigned int nClaimID) = 0;
     virtual void SetAnimationTick(unsigned int nIndex, unsigned short sAnimationTick) = 0;
     virtual void SetAnimationStep(unsigned int nIndex, unsigned short sAnimationStep) = 0;
-    virtual void SetAnimationPlay(unsigned int nIndex, unsigned short sAnimationPlay) = 0;
+    virtual void SetAnimationPlay(unsigned int nIndex, unsigned char sAnimationPlay) = 0;
     virtual void SetEmoteID(unsigned int nIndex, unsigned int nEmoteID) = 0;
     virtual void SetSpawnFlags(unsigned int nIndex, unsigned int nSpawnFlags) = 0;
     virtual void SetLinkshellColor(unsigned int nIndex, unsigned int nLinkshellColor) = 0;
@@ -729,7 +715,6 @@ struct IAshitaCore
     virtual HMODULE GetHandle(void) const = 0;
     virtual HWND GetFFXiHwnd(void) const = 0;
 
-    virtual IGuiManager* GetGuiManager(void) = 0;
     virtual IFontManager* GetFontManager(void) = 0;
     virtual IChatManager* GetChatManager(void) = 0;
     virtual IInputManager* GetInputManager(void) = 0;
