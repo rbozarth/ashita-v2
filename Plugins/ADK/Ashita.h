@@ -671,18 +671,24 @@ struct IPlayer
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 struct ITarget
 {
-    // Subtarget functions..
-    virtual unsigned int GetSubTargetIndex(void) const = 0;
-    virtual unsigned int GetSubTargetID(void) const = 0;
-    virtual Ashita::FFXI::Entity* GetSubTargetEntity(void) const = 0;
-    virtual unsigned char GetSubTargetLockedOn(void) const = 0;
-    virtual unsigned char GetSubTargetMenuOpened(void) const = 0;
-
-    // Main target functions..
     virtual const char* GetTargetName(void) const = 0;
-    virtual Ashita::FFXI::Entity* GetTargetEntity(void) const = 0;
-    virtual unsigned int GetTargetID(void) const = 0;
     virtual unsigned int GetTargetHealthPercent(void) const = 0;
+    
+    virtual unsigned int GetTargetIndex(void) const = 0;
+    virtual unsigned int GetTargetID(void) const = 0;
+    virtual Ashita::FFXI::Entity* GetTargetEntity(void) const = 0;
+    virtual unsigned int GetTargetWarpPtr(void) const = 0;
+    virtual unsigned short GetTargetMask(void) const = 0;
+
+    virtual unsigned int GetMainTargetIndex(void) const = 0;
+    virtual unsigned int GetMainTargetID(void) const = 0;
+    virtual Ashita::FFXI::Entity* GetMainTargetEntity(void) const = 0;
+    virtual unsigned int GetMainTargetWarpPtr(void) const = 0;
+    virtual unsigned short GetMainTargetMask(void) const = 0;
+
+    virtual bool GetTargetLockedOn(void) const = 0;
+    virtual bool GetSubTargetActive(void) const = 0;
+    virtual bool GetTargetMenuOpened(void) const = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
