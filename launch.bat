@@ -1,1 +1,1 @@
-ashita_boot.exe "main.lua"
+ashita_boot.exe "Retail (Windowed).xml"

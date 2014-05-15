@@ -33,10 +33,10 @@ local tparty_str_partymember_mp = "__tparty_party_mp";
 -- desc: First called when our addon is loaded.
 ---------------------------------------------------------------------------------------------------
 ashita.register_event('load', function()
-    tparty_config.window_x      = ScriptEngine:GetConfigInt('boot_config', 'window_x', 800);
-    tparty_config.window_y      = ScriptEngine:GetConfigInt('boot_config', 'window_y', 600);
-    tparty_config.menu_x        = ScriptEngine:GetConfigInt('boot_config', 'menu_x', 0);
-    tparty_config.menu_y        = ScriptEngine:GetConfigInt('boot_config', 'menu_y', 0);
+    tparty_config.window_x      = config:get_int('boot_config', 'window_x', 800);
+    tparty_config.window_y      = config:get_int('boot_config', 'window_y', 600);
+    tparty_config.menu_x        = config:get_int('boot_config', 'menu_x', 0);
+    tparty_config.menu_y        = config:get_int('boot_config', 'menu_y', 0);
     
     -- Validate the configuration data..
     if (tparty_config.menu_x <= 0) then

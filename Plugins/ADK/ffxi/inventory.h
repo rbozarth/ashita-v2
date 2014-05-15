@@ -88,9 +88,9 @@ namespace Ashita
             TreasureEntry   TreasurePool[10];
             unsigned int    Unknown0002;//something to do with being in town maybe treasure related? 1 in town, 2 outside.
             unsigned char   Unknown0003;
-            unsigned char   StorageMaxCapacity[Ashita::Enums::StorageType::StorageMax];
+            unsigned char   StorageMaxCapacity[8];
             unsigned char   Unknown0004;
-            unsigned short  StorageMaxCapacity1[Ashita::Enums::StorageType::StorageMax];
+            unsigned short  StorageMaxCapacity1[8];
             unsigned char   Unknown0005[0x18A];
             EquipmentEntry  Equipment[Ashita::Enums::EquipmentSlot::EquipmentMax];
             unsigned char   Unknown0006[0x240];//36 bytes each entry 16 entries

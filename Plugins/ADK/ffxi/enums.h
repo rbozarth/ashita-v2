@@ -204,8 +204,9 @@ namespace Ashita
             Satchel = 5,
             Sack = 6,
             Case = 7,
+            Wardrobe = 8,
 
-            StorageMax = 8
+            StorageMax = 9
         };
     };
 };

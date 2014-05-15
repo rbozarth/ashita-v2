@@ -212,6 +212,29 @@ struct IChatManager
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
+// IConfigurationManager
+//
+// Ashita configuration manager that holds loaded configuration information for the Ashita core
+// as well as plugins and other loaded data.
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////
+struct IConfigurationManager
+{
+    virtual bool LoadConfiguration(const char* className) = 0;
+    virtual bool LoadConfiguration(const char* className, const char* file) = 0;
+    virtual void RemoveConfiguration(const char* className) = 0;
+    virtual bool SaveConfiguration(const char* className) = 0;
+
+    virtual Ashita::AS_String GetConfigString(const char* className, const char* name) = 0;
+    virtual int GetConfigString(const char* className, const char* name, LPVOID lpOutput) = 0;
+    virtual bool GetConfigBool(const char* className, const char* name, bool defaultValue) = 0;
+    virtual int GetConfigInt(const char* className, const char* name, int defaultValue) = 0;
+    virtual float GetConfigFloat(const char* className, const char* name, float defaultValue) = 0;
+    virtual double GetConfigDouble(const char* className, const char* name, double defaultValue) = 0;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
 // Keyboard Callback Typedefs
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -673,7 +696,7 @@ struct ITarget
 {
     virtual const char* GetTargetName(void) const = 0;
     virtual unsigned int GetTargetHealthPercent(void) const = 0;
-    
+
     virtual unsigned int GetTargetIndex(void) const = 0;
     virtual unsigned int GetTargetID(void) const = 0;
     virtual Ashita::FFXI::Entity* GetTargetEntity(void) const = 0;
@@ -721,36 +744,16 @@ struct IAshitaCore
     virtual HMODULE GetHandle(void) const = 0;
     virtual HWND GetFFXiHwnd(void) const = 0;
 
+    virtual IConfigurationManager* GetConfigurationManager(void) = 0;
+    virtual IPointerManager* GetPointerManager(void) = 0;
+    virtual IResourceManager* GetResourceManager(void) = 0;
+
     virtual IFontManager* GetFontManager(void) = 0;
     virtual IChatManager* GetChatManager(void) = 0;
+    virtual IDataManager* GetDataManager(void) = 0;
     virtual IInputManager* GetInputManager(void) = 0;
     virtual IPacketManager* GetPacketManager(void) = 0;
     virtual IPluginManager* GetPluginManager(void) = 0;
-    virtual IPointerManager* GetPointerManager(void) = 0;
-    virtual IResourceManager* GetResourceManager(void) = 0;
-    virtual IDataManager* GetDataManager(void) = 0;
-};
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// IScriptEngine
-//
-// Main Ashita Lua script engine interface.
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////
-struct IScriptEngine
-{
-    virtual bool RunScript(const char* script, bool bSilent = false) = 0;
-    virtual bool RunString(const char* str) = 0;
-
-    virtual bool GetConfigString(const char* className, const char* name, LPVOID lpOutput) = 0;
-    virtual Ashita::AS_String GetConfigString(const char* className, const char* name) = 0;
-    virtual bool GetConfigBool(const char* className, const char* name, bool defaultValue) = 0;
-    virtual int GetConfigInt(const char* className, const char* name, int defaultValue) = 0;
-    virtual float GetConfigFloat(const char* className, const char* name, float defaultValue) = 0;
-    virtual double GetConfigDouble(const char* className, const char* name, double defaultValue) = 0;
-
-    virtual lua_State* GetState(void) const = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -806,7 +809,7 @@ struct IPlugin
     virtual PluginData GetPluginData(void) = 0;
 
     // Main Plugin Handlers
-    virtual bool Initialize(IAshitaCore* ashitaCore, IScriptEngine* scriptManager, DWORD dwPluginId) = 0;
+    virtual bool Initialize(IAshitaCore* ashitaCore, DWORD dwPluginId) = 0;
     virtual void Release(void) = 0;
 
     // ChatManager
@@ -835,7 +838,6 @@ class PluginBase : public IPlugin
 {
 protected:
     IAshitaCore*        m_AshitaCore;       // The main Ashita Core object.
-    IScriptEngine*      m_ScriptEngine;     // The main Ashita script engine.
     DWORD               m_PluginId;         // The ID assigned to this plugin when it was loaded.
     IDirect3DDevice8*   m_Direct3DDevice;   // The Direct3D device object.
 
@@ -868,15 +870,13 @@ public:
      * @brief Initializes this plugin and prepares it for use.
      *
      * @param ashitaCore            The main AshitaCore object exposed to plugins.
-     * @param scriptManager         The main ScriptEngine object exposed to plugins.
      * @param dwPluginId            The id of this plugin. (The base address where it was loaded.)
      *
      * @return True on success, false otherwise. (If false, the plugin will be unloaded.)
      */
-    bool Initialize(IAshitaCore* ashitaCore, IScriptEngine* scriptEngine, DWORD dwPluginId)
+    bool Initialize(IAshitaCore* ashitaCore, DWORD dwPluginId)
     {
         this->m_AshitaCore = ashitaCore;
-        this->m_ScriptEngine = scriptEngine;
         this->m_PluginId = dwPluginId;
         return false;
     }

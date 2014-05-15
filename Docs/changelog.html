@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Ashita</title>
@@ -28,6 +28,9 @@
                 <a class="btn btn-warning navbar-btn" href="changelog.html">
                     <span class="glyphicon glyphicon-list"></span> Changelog
                 </a>
+                <a class="btn btn-info navbar-btn" href="http://doc.ffevo.net/doku.php?id=ashitav2:start">
+                    <span class="glyphicon glyphicon-file"></span> Documentation
+                </a>
                 <a class="btn btn-success navbar-btn" href="http://delvl.ffevo.net/">
                     <span class="glyphicon glyphicon-wrench"></span> For Developers
                 </a>
@@ -42,6 +45,27 @@
 
     <!-- Changelog -->
     <div class="container changelog">
+        <!-- Version v2.0.0.14 -->
+        <article class="release">
+            <h3>v2.0.0.14</h3>
+            <span class="date">Released: 5.14.2014</span>
+            <div class="clear"></div>
+            <ul class="changelist">
+                <li class="red"><span><b>REM</b></span> Removed the Lua engine inside the Ashita Core.</li>
+                <li class="red"><span><b>REM</b></span> Removed the ScriptEngine in the Ashita Core.</li>
+                <li class="blue"><span><b>ADD</b></span> Added new ConfigurationManager to replace the configuration files from the old ScriptEngine. (Now using XML)</li>
+                <li class="green"><span><b>FIX</b></span> Fixed some internal compiler warnings due to casting of objects.</li>
+                <li class="green"><span><b>CHG</b></span> Recoded how the pointer manager loads its pointers. (Now found within ashita.pointers.xml)</li>
+                <li class="green"><span><b>CHG</b></span> Recoded how the resource manager loads its data. (Now found within ashita.datmap.xml)</li>
+                <li class="red"><span><b>REM</b></span> Removed old Lua configuration files.</li>
+                <li class="red"><span><b>REM</b></span> Removed old read me file.</li>
+                <li class="red"><span><b>REM</b></span> Removed old dummy file from logs folder.</li>
+                <li class="blue"><span><b>ADD</b></span> Added new XML boot configurations.</li>
+                <li class="blue"><span><b>ADD</b></span> Added new XML data files. (ashita.datmap.xml and ashita.pointers.xml).</li>
+                <li class="green"><span><b>CHG</b></span> Updated ADK to work with latest game update (05.14.2014).</li>
+            </ul>
+        </article>
+        
         <!-- Version v2.0.0.13 -->
         <article class="release">
             <h3>v2.0.0.13</h3>

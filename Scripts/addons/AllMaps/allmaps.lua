@@ -30,7 +30,7 @@ local allmaps   = { };
 ---------------------------------------------------------------------------------------------------
 ashita.register_event('load', function()
     -- Scan for the map call pointer..
-    local sig = { 0xE9, 0xFF, 0xFF, 0xFF, 0xFF, 0x50, 0xE8, 0xFF, 0xFF, 0xFF, 0xFF, 0x0F, 0xBF, 0x96, 0xFF, 0xFF, 0xFF, 0xFF, 0x83, 0xC4, 0x04 };
+    local sig = { 0x50, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x83, 0xC4, 0x04, 0x88, 0x86, 0xFF, 0xFF, 0xFF, 0xFF, 0x0F, 0xBF, 0x86, 0xFF, 0xFF, 0xFF, 0xFF, 0x8A };
     local ptr = mem:FindPattern('FFXiMain.dll', sig, #sig, "x????xx????xxx????xxx");
     
     -- Ensure we found a pointer..
@@ -40,15 +40,15 @@ ashita.register_event('load', function()
     end
     
     -- Adjust the pointer..
-    ptr = ptr + 6;
+    ptr = ptr + 1;
     allmaps.ptr = ptr;
         
     -- Read the data we plan to replace..
     allmaps.backup = mem:ReadArray(ptr, 5);
         
-    -- Overwrite the function with nops..
-    local nops = { 0x90, 0x90, 0x90, 0x90, 0x90 };
-    mem:WriteArray(allmaps.ptr, nops);        
+    -- Overwrite the function..
+    local data = { 0xB8, 0x01, 0x00, 0x00, 0x00 };
+    mem:WriteArray(allmaps.ptr, data);        
 end );
 
 ---------------------------------------------------------------------------------------------------
