@@ -31,7 +31,7 @@ local allmaps   = { };
 ashita.register_event('load', function()
     -- Scan for the map call pointer..
     local sig = { 0x50, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x83, 0xC4, 0x04, 0x88, 0x86, 0xFF, 0xFF, 0xFF, 0xFF, 0x0F, 0xBF, 0x86, 0xFF, 0xFF, 0xFF, 0xFF, 0x8A };
-    local ptr = mem:FindPattern('FFXiMain.dll', sig, #sig, "x????xx????xxx????xxx");
+    local ptr = mem:FindPattern('FFXiMain.dll', sig, #sig, "x?????xxxxx????xxx????x");
     
     -- Ensure we found a pointer..
     if (ptr == 0) then
