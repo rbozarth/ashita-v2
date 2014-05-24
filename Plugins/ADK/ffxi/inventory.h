@@ -82,7 +82,7 @@ namespace Ashita
          */
         struct InventoryStruct
         {
-            char            Unknown0000[0x6C18];
+            char            Unknown0000[0x6C20];
             ItemArray       Storage[Ashita::Enums::StorageType::StorageMax];
             char            Unknown0001[0x21C];
             TreasureEntry   TreasurePool[10];
