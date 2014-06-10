@@ -231,6 +231,8 @@ struct IConfigurationManager
     virtual int GetConfigInt(const char* className, const char* name, int defaultValue) = 0;
     virtual float GetConfigFloat(const char* className, const char* name, float defaultValue) = 0;
     virtual double GetConfigDouble(const char* className, const char* name, double defaultValue) = 0;
+
+    virtual void SetConfigValue(const char* className, const char* name, const char* value) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1002,6 +1004,6 @@ public:
 
 typedef double(__stdcall *GetInterfaceVersionFunc)(void);
 typedef void(__stdcall *CreatePluginDataFunc)(PluginData* lpBuffer);
-typedef IPlugin*    (__stdcall *CreatePluginFunc)(char* pszUnused);
+typedef IPlugin* (__stdcall *CreatePluginFunc)(char* pszUnused);
 
 #endif // __ASHITA_ADK_ASHITA_H_INCLUDED__
