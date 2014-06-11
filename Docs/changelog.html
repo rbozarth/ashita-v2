@@ -45,6 +45,18 @@
 
     <!-- Changelog -->
     <div class="container changelog">
+        <!-- Version v2.0.0.15 -->
+        <article class="release">
+            <h3>v2.0.0.15</h3>
+            <span class="date">Released: 6.09.2014</span>
+            <div class="clear"></div>
+            <ul class="changelist">
+                <li class="green"><span><b>FIX</b></span> Fixed issue with LoadConfiguration not appending the file extension .xml</li>
+                <li class="green"><span><b>FIX</b></span> Fixed issue with SaveConfiguration not appending the file extension .xml</li>
+                <li class="green"><span><b>FIX</b></span> Fixed missing virtual function SetConfigValue in IConfiguration interface.</li>
+            </ul>
+        </article>
+
         <!-- Version v2.0.0.14 -->
         <article class="release">
             <h3>v2.0.0.14</h3>
@@ -65,7 +77,7 @@
                 <li class="green"><span><b>CHG</b></span> Updated ADK to work with latest game update (05.14.2014).</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.13 -->
         <article class="release">
             <h3>v2.0.0.13</h3>
@@ -81,7 +93,7 @@
                 <li class="blue"><span><b>ADD</b></span> Added events and packets libraries for Addons.</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.12 -->
         <article class="release">
             <h3>v2.0.0.12</h3>
@@ -92,7 +104,7 @@
                 <li class="blue"><span><b>ADD</b></span> ItemTools plugin.</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.11 -->
         <article class="release">
             <h3>v2.0.0.11</h3>
@@ -106,7 +118,7 @@
                 <li class="green"><span><b>FIX</b></span> AnimationPlay inside of Entity now returns and sets as an unsigned char as it should.</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.10 -->
         <article class="release">
             <h3>v2.0.0.10</h3>
@@ -120,11 +132,11 @@
                 <li class="blue"><span><b>ADD</b></span> Added: New Addons plugin, has all same features as the original /addon commands.</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.9 -->
         <article class="release">
             <h3>v2.0.0.9</h3>
-            <span class="date">Released: 4.14.2014 (This log includes updates that were pushed after 2.0.0.8 was released.)</span> 
+            <span class="date">Released: 4.14.2014 (This log includes updates that were pushed after 2.0.0.8 was released.)</span>
             <div class="clear"></div>
             <ul class="changelist">
                 <li class="green"><span><b>FIX</b></span> Fixed inclusion loops with addon libraries.</li>
@@ -139,12 +151,20 @@
                 <li class="blue"><span><b>ADD</b></span> Recast addon.</li>
                 <li class="blue"><span><b>ADD</b></span> (Addons) file:get_install_dir - Returns the given installation path for FFXI, POL, Tetramaster etc.</li>
                 <li class="blue"><span><b>ADD</b></span> (Addons) file:get_dirs - Gets a list of directories within the given path.</li>
-                <li class="green"><span><b>CHG</b></span> (Addons) newchat now accepts two return values.
-                <code style="margin-left:40px;">- The first is always a boolean if the line should be blocked.
-- The second is a string that will overwrite the current chat text. (This return is optional!)</code></li>
-                <li class="green"><span><b>CHG</b></span> (Addons) incoming_packet and outgoing_packet now accepts two return values.
-                <code style="margin-left:40px;">- The first is always a boolean if the packet should be blocked.
-- The second is a table of the new packet data to overwrite the current one with. (This return is optional!)</code></li>
+                <li class="green">
+                    <span><b>CHG</b></span> (Addons) newchat now accepts two return values.
+                    <code style="margin-left:40px;">
+                        - The first is always a boolean if the line should be blocked.
+                        - The second is a string that will overwrite the current chat text. (This return is optional!)
+                    </code>
+                </li>
+                <li class="green">
+                    <span><b>CHG</b></span> (Addons) incoming_packet and outgoing_packet now accepts two return values.
+                    <code style="margin-left:40px;">
+                        - The first is always a boolean if the packet should be blocked.
+                        - The second is a table of the new packet data to overwrite the current one with. (This return is optional!)
+                    </code>
+                </li>
                 <li class="green"><span><b>FIX</b></span> Typo in OnEvent addon.</li>
                 <li class="green"><span><b>CHG</b></span> (Addon) Log library now prints out the addon using the log functions.</li>
                 <li class="green"><span><b>CHG</b></span> (Addon) Settings library now automatically creates the directory for the settings file if it does not exist.</li>
@@ -154,7 +174,7 @@
                 <li class="green"><span><b>FIX</b></span> Minor issue with SetInputText's carrot injection.</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.8 -->
         <article class="release">
             <h3>v2.0.0.8</h3>
@@ -173,7 +193,7 @@
                 <li class="blue"><span><b>ADD</b></span> (Addons) color library for generating FFXI specific color strings for the chat log. (Includes: get_ffxi_color, string.color, string.stripcolor, string.stripautotrans)</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.7 -->
         <article class="release">
             <h3>v2.0.0.7</h3>
@@ -191,7 +211,7 @@
                 <li class="green"><span><b>FIX</b></span> Fixed issue where plugins would not receive Direct3DRelease calls.</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.6 -->
         <article class="release">
             <h3>v2.0.0.6</h3>
@@ -221,22 +241,22 @@
                 <li class="orange"><span><b>CHG</b></span> Updated the Default.txt to have an actual format and load common data.</li>
             </ul>
             <div class="clear"></div>
-            <br/>
-            <div class="expand" onClick="collaspe('2006info')"><b>+ Expand Information</b></div>
+            <br />
+            <div class="expand" onclick="collaspe('2006info')"><b>+ Expand Information</b></div>
             <code id="2006info" style="display: none">
-ADK Interface Overhaul
-    This update includes a semi-massive overhaul to the ADK interface. Ashita::AS_String is no
-    longer used as param types. Instead everything is hard-coded to be const char*. This change
-    was done to reduce the conversion cost between the various types. There is a lot of overhead
-    when just using a simple string like "Hello" and passing it as a param that required AS_String.
-    
-    Instead, any needed conversion will be done inside the hook core now instead of between the interface calls.
-    
-WindowerInput
-    WindowerInput plugin has been introduced in this version. Third-party applications should now work with Ashita v2.
+                ADK Interface Overhaul
+                This update includes a semi-massive overhaul to the ADK interface. Ashita::AS_String is no
+                longer used as param types. Instead everything is hard-coded to be const char*. This change
+                was done to reduce the conversion cost between the various types. There is a lot of overhead
+                when just using a simple string like "Hello" and passing it as a param that required AS_String.
+
+                Instead, any needed conversion will be done inside the hook core now instead of between the interface calls.
+
+                WindowerInput
+                WindowerInput plugin has been introduced in this version. Third-party applications should now work with Ashita v2.
             </code>
         </article>
-        
+
         <!-- Version v2.0.0.5 -->
         <article class="release">
             <h3>v2.0.0.5</h3>
@@ -249,7 +269,7 @@ WindowerInput
                 <li class="green"><span><b>FIX</b></span> Crash that would occur on invalid /addon commands.</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.4 -->
         <article class="release">
             <h3>v2.0.0.4</h3>
@@ -269,61 +289,61 @@ WindowerInput
                 <li class="orange"><span><b>CHG</b></span> Addons now display more information when loaded.</li>
             </ul>
             <div class="clear"></div>
-            <br/>
-            <div class="expand" onClick="collaspe('2004info')"><b>+ Expand Information</b></div>
+            <br />
+            <div class="expand" onclick="collaspe('2004info')"><b>+ Expand Information</b></div>
             <code id="2004info" style="display: none">
-Keybind Information
-    - /bind [mods][key] [up/down] [command]
-    - /unbind [mods][key] [up/doown]
-    - /bind list - to list all current keybinds.
-    - /unbind all - to unbind all keys.
-    - /unbindall and /clearbinds - to unbind all keys.
-    - /keyboard_bind same as /bind
-    - /keyboard_unbind same as /unbind
+                Keybind Information
+                - /bind [mods][key] [up/down] [command]
+                - /unbind [mods][key] [up/doown]
+                - /bind list - to list all current keybinds.
+                - /unbind all - to unbind all keys.
+                - /unbindall and /clearbinds - to unbind all keys.
+                - /keyboard_bind same as /bind
+                - /keyboard_unbind same as /unbind
 
-Keybinds can use the following mods:
-    ! = alt
-    ^ = ctrl
-    @ = windows key
-    # = apps key
-    + = shift
+                Keybinds can use the following mods:
+                ! = alt
+                ^ = ctrl
+                @ = windows key
+                # = apps key
+                + = shift
 
-For example:
-    /bind !1 /wave - would bind Alt+1 to /wave when the keys are pressed down.
-    /bind ^1 /wave - would bind Ctrl+1 to /wave when the keys are pressed down.
-    /bind !1 up /wave - would bind Alt+1 to /wave when the keys are released.
+                For example:
+                /bind !1 /wave - would bind Alt+1 to /wave when the keys are pressed down.
+                /bind ^1 /wave - would bind Ctrl+1 to /wave when the keys are pressed down.
+                /bind !1 up /wave - would bind Alt+1 to /wave when the keys are released.
 
-Memory Function Information
-    - mem:GetBaseAddress(modname) - Obtains the base address of the given module name.
-    - mem:UnprotectMemory(addr, size) - Unprotects the region of memory starting at the address.
-    - mem:FindPattern(modname, bytetable, size, mask) - Finds a pattern of data within the given module.
-    - mem:ReadUChar(addr)              - Read an unsigned char.
-    - mem:ReadChar(addr)               - Reads a signed char.
-    - mem:ReadUShort(addr)             - Reads an unsigned short.
-    - mem:ReadShort(addr)              - Reads a signed short.
-    - mem:ReadULong(addr)              - Reads an unsigned long.
-    - mem:ReadLong(addr)               - Reads a signed long.
-    - mem:ReadULonglong(addr)          - Reads an unsigned long long.
-    - mem:ReadLonglong(addr)           - Reads a signed long long.
-    - mem:ReadFloat(addr)              - Reads a float.
-    - mem:ReadDouble(addr)             - Reads a double.
-    - mem:ReadArray(addr, size)        - Reads an array.
-    - mem:ReadString(addr, size)       - Reads a string.
-    - mem:WriteUChar(addr, val)        - Writes an unsigned char.
-    - mem:WriteChar(addr, val)         - Writes a signed char.
-    - mem:WriteUShort(addr, val)       - Writes an unsigned short.
-    - mem:WriteShort(addr, val)        - Writes a signed short.
-    - mem:WriteULong(addr, val)        - Writes an unsigned long.
-    - mem:WriteLong(addr, val)         - Writes a signed long.
-    - mem:WriteULonglong(addr, val)    - Writes an unsigned long long.
-    - mem:WriteLonglong(addr, val)     - Writes a signed long long.
-    - mem:WriteFloat(addr, val)        - Writes a float.
-    - mem:WriteDouble(addr, val)       - Writes a double.
-    - mem:WriteArray(addr, val)        - Writes an array.
-    - mem:WriteString(addr, val)       - Writes a string.
+                Memory Function Information
+                - mem:GetBaseAddress(modname) - Obtains the base address of the given module name.
+                - mem:UnprotectMemory(addr, size) - Unprotects the region of memory starting at the address.
+                - mem:FindPattern(modname, bytetable, size, mask) - Finds a pattern of data within the given module.
+                - mem:ReadUChar(addr)              - Read an unsigned char.
+                - mem:ReadChar(addr)               - Reads a signed char.
+                - mem:ReadUShort(addr)             - Reads an unsigned short.
+                - mem:ReadShort(addr)              - Reads a signed short.
+                - mem:ReadULong(addr)              - Reads an unsigned long.
+                - mem:ReadLong(addr)               - Reads a signed long.
+                - mem:ReadULonglong(addr)          - Reads an unsigned long long.
+                - mem:ReadLonglong(addr)           - Reads a signed long long.
+                - mem:ReadFloat(addr)              - Reads a float.
+                - mem:ReadDouble(addr)             - Reads a double.
+                - mem:ReadArray(addr, size)        - Reads an array.
+                - mem:ReadString(addr, size)       - Reads a string.
+                - mem:WriteUChar(addr, val)        - Writes an unsigned char.
+                - mem:WriteChar(addr, val)         - Writes a signed char.
+                - mem:WriteUShort(addr, val)       - Writes an unsigned short.
+                - mem:WriteShort(addr, val)        - Writes a signed short.
+                - mem:WriteULong(addr, val)        - Writes an unsigned long.
+                - mem:WriteLong(addr, val)         - Writes a signed long.
+                - mem:WriteULonglong(addr, val)    - Writes an unsigned long long.
+                - mem:WriteLonglong(addr, val)     - Writes a signed long long.
+                - mem:WriteFloat(addr, val)        - Writes a float.
+                - mem:WriteDouble(addr, val)       - Writes a double.
+                - mem:WriteArray(addr, val)        - Writes an array.
+                - mem:WriteString(addr, val)       - Writes a string.
             </code>
         </article>
-        
+
         <!-- Version v2.0.0.3 -->
         <article class="release">
             <h3>v2.0.0.3</h3>
@@ -345,7 +365,7 @@ Memory Function Information
                 <li class="green"><span><b>FIX</b></span> Plugin manager showing error in log when doing something successfully.</li>
             </ul>
         </article>
-    
+
         <!-- Version v2.0.0.2 -->
         <article class="release">
             <h3>v2.0.0.2</h3>
@@ -363,7 +383,7 @@ Memory Function Information
                 <li class="green"><span><b>FIX</b></span> Bug with controllers working in the background instead of the foreground.</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.1 -->
         <article class="release">
             <h3>v2.0.0.1</h3>
@@ -389,13 +409,13 @@ Memory Function Information
                 <li class="red"><span><b>REM</b></span> Removed test font object.</li>
             </ul>
         </article>
-        
+
         <!-- Version v2.0.0.0 -->
         <article class="release">
             <h3>v2.0.0.0</h3>
             <span class="date">Released: 3.19.2014</span>
             <div class="clear"></div>
-            <ul class="changelist">                       
+            <ul class="changelist">
                 <li class="blue"><span><b>ADD</b></span> Ashita's font objects are now moveable with the mouse by holding shift and clicking on them.</li>
                 <li class="orange"><span><b>CHG</b></span> Ashita's extensions are now referred to as plugins.</li>
                 <li class="orange"><span><b>CHG</b></span> Ashita's plugin interface is completely revamped and focused on minimizing breaking plugins when Ashita updates.</li>
@@ -407,7 +427,7 @@ Memory Function Information
             </ul>
         </article>
     </div>
-    
+
     <footer class="wrapper footer">
         <div class="wrapper wide">
             <div class="container">
@@ -421,7 +441,7 @@ Memory Function Information
                     </div>
                     <div class="col4">
                         <h2>Active Plugin Developers</h2>
-                        <ul>                            
+                        <ul>
                             <li><a><span class="glyphicon glyphicon-user"></span> bluekirby0</a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span> h1pp0</a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span> Lolwutt</a></li>
@@ -459,8 +479,8 @@ Memory Function Information
                             FINAL FANTASY is a registered trademark of Square Enix Co., Ltd..
                         </small>
                         <div style="float: right;">
-                            <img src="assets/valid-html5.png" alt="html5 valid"> 
-                            <img src="assets/valid-css.png" alt="css3 valid"> 
+                            <img src="assets/valid-html5.png" alt="html5 valid">
+                            <img src="assets/valid-css.png" alt="css3 valid">
                             <img src="assets/csstableless.gif" alt="css tableless">
                         </div>
                     </div>
@@ -468,16 +488,15 @@ Memory Function Information
             </div>
         </div>
     </footer>
-    
+
     <script src="assets/js/jquery-2.1.0.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#moogle').tooltip();
         })
-        function collaspe(id) 
-        {
-            if (document.getElementById(id).style.display == "block") 
+        function collaspe(id) {
+            if (document.getElementById(id).style.display == "block")
                 document.getElementById(id).style.display = "none";
             else
                 document.getElementById(id).style.display = "block";
