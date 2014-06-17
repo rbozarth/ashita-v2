@@ -11,6 +11,6 @@
 	<pointer name="logfile" pattern="50E8FFFFFFFF84C075388B0D" mask="xx????xxxxxx" offset="-4" />
 	<pointer name="parsecommand" pattern="8B8C24080400005556578D" mask="xxxxxxxxxxx" offset="-6" />
 	<pointer name="party" pattern="0FBEC38D0C5256578BF58D0448" mask="xxxxxxxxxxxxx" offset="22" />
-	<pointer name="player" pattern="8AFFFF83FFFFF6D91BC95F23C88BF18BC65EC3" mask="x??x??xxxxxxxxxxxxx" offset="140" />
+	<pointer name="player" pattern="8AFFFF83FFFFF6D91BC95F23C88BF18BC65EC3" mask="x??x??xxxxxxxxxxxxx" offset="139" />
 	<pointer name="target" pattern="53568BF18B480433DB3BCB75065E33C05B59C38B0D" mask="xxxxxxxxxxxxxxxxxxxxx" offset="45" />
 </pointers>
