@@ -82,16 +82,15 @@ namespace Ashita
          */
         struct InventoryStruct
         {
-            char            Unknown0000[0x6C20];
+            char            Unknown0000[0x7A60];
             ItemArray       Storage[Ashita::Enums::StorageType::StorageMax];
             char            Unknown0001[0x21C];
             TreasureEntry   TreasurePool[10];
             unsigned int    Unknown0002;//something to do with being in town maybe treasure related? 1 in town, 2 outside.
             unsigned char   Unknown0003;
-            unsigned char   StorageMaxCapacity[8];
-            unsigned char   Unknown0004;
-            unsigned short  StorageMaxCapacity1[8];
-            unsigned char   Unknown0005[0x18A];
+            unsigned char   StorageMaxCapacity[Ashita::Enums::StorageType::StorageMax];
+            unsigned short  StorageMaxCapacity1[Ashita::Enums::StorageType::StorageMax];
+            unsigned char   Unknown0005[0x18C];
             EquipmentEntry  Equipment[Ashita::Enums::EquipmentSlot::EquipmentMax];
             unsigned char   Unknown0006[0x240];//36 bytes each entry 16 entries
             unsigned char   Unknown0007[0xBC];
