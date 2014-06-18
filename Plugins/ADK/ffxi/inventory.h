@@ -90,7 +90,7 @@ namespace Ashita
             unsigned char   Unknown0003;
             unsigned char   StorageMaxCapacity[Ashita::Enums::StorageType::StorageMax];
             unsigned short  StorageMaxCapacity1[Ashita::Enums::StorageType::StorageMax];
-            unsigned char   Unknown0005[0x18C];
+            unsigned char   Unknown0005[0x188];
             EquipmentEntry  Equipment[Ashita::Enums::EquipmentSlot::EquipmentMax];
             unsigned char   Unknown0006[0x240];//36 bytes each entry 16 entries
             unsigned char   Unknown0007[0xBC];
