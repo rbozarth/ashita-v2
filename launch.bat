@@ -1,1 +1,0 @@
-ashita_boot.exe "Retail (Windowed).xml"
