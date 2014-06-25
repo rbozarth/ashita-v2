@@ -29,7 +29,7 @@ local default_config =
     font =
     {
         name        = 'Arial',
-        size        = 14,
+        size        = 12,
         color       = 0xFFFF0000,
         position    = { 1, 1 },
     },
