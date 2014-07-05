@@ -173,7 +173,7 @@ ashita.register_event('render', function()
             fTP:SetText(tostring(tp));
             
             -- Colorize the TP..
-            if (tp >= 100) then
+            if (tp >= 1000) then
                 fTP:SetColor(0xFF00FF00);
             else
                 fTP:SetColor(0xFFFFFFFF);
