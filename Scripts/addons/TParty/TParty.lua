@@ -136,7 +136,7 @@ ashita.register_event('render', function()
                 f:SetVisibility(true);
                 
                 -- Colorize the TP..
-                if (tp >= 100) then
+                if (tp >= 1000) then
                     f:SetColor(0xFF00FF00);
                 else
                     f:SetColor(0xFFFFFFFF);
