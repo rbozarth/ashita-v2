@@ -65,7 +65,7 @@ namespace Ashita
             unsigned short  Zone;           // Party member zone id.
             unsigned int    Unknown1;       // Unknown
             unsigned int    FlagMask;       // Party member flags.
-            unsigned char   Unknown2[52];   // Unknown
+            unsigned char   Unknown2[56];   // Unknown
             unsigned int    IDDupe;         // Member id dupe.
             unsigned char   CurrentHPPDupe; // Member hp percent dupe.
             unsigned char   CurrentMPPDupe; // Member mp percent dupe.
