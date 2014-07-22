@@ -34,7 +34,15 @@ local target_info =
         offset      = 1,
         offset2     = 0x2E5EC,
         pointer     = 0,
-    }
+    },
+    ['r'] =
+    {
+        pattern     = { 0x8B, 0x0D, 0xFF, 0xFF, 0xFF, 0xFF, 0x85, 0xC9, 0x75, 0x03, 0x33, 0xC0, 0xC3, 0x6A, 0x00 },
+        mask        = "xx????xxxxxxxxx",
+        offset      = 2,
+        offset2     = 0x11E,
+        pointer     = 0,
+    },
 };
 
 ---------------------------------------------------------------------------------------------------
@@ -42,6 +50,7 @@ local target_info =
 ---------------------------------------------------------------------------------------------------
 target_info.lastst.pointer  = mem:FindPattern('FFXiMain.dll', target_info.lastst.pattern, #target_info.lastst.pattern, target_info.lastst.mask);
 target_info.scan.pointer    = mem:FindPattern('FFXiMain.dll', target_info.scan.pattern, #target_info.scan.pattern, target_info.scan.mask);
+target_info.r.pointer    = mem:FindPattern('FFXiMain.dll', target_info.r.pattern, #target_info.r.pattern, target_info.r.mask);
 
 ---------------------------------------------------------------------------------------------------
 -- func: get_target_lastst
@@ -194,6 +203,62 @@ local function get_target_ft()
 end
 
 ---------------------------------------------------------------------------------------------------
+-- func: get_target_normal
+-- desc: Obtains the 't' target.
+-- retn: An entity if found, nil otherwise.
+---------------------------------------------------------------------------------------------------
+local function get_target_normal()
+    return AshitaCore:GetDataManager():GetTarget():GetTargetEntity();
+end
+
+---------------------------------------------------------------------------------------------------
+-- func: get_target_r
+-- desc: Obtains the 'r' target.
+-- retn: An entity if found, nil otherwise.
+---------------------------------------------------------------------------------------------------
+local function get_target_r()
+    -- Ensure the pointer is valid..
+    if (target_info.r.pointer == 0) then
+        return nil;
+    end
+    
+    -- Read the pointer..
+    local ptr = mem:ReadLong(target_info.r.pointer + target_info.r.offset);
+    if (ptr == 0 or ptr == nil) then
+        return nil;
+    end
+    
+    -- Read the next pointer..
+    ptr = mem:ReadLong(ptr);
+    if (ptr == 0 or ptr == nil) then
+        return nil;
+    end
+    
+    -- Adjust the pointer with the second offset..
+    ptr = ptr + target_info.r.offset2;
+
+    -- Read the last tell target name..
+    local name = '';
+    for x = 0, 255 do
+        local data = mem:ReadChar(ptr + x);
+        if (data == 0) then
+            break;
+        end
+        name = name .. string.char(data);
+    end
+    
+    -- Attempt to locate the entity with this same name..
+    for x = 0, 2048 do
+        local ent = GetEntity(x);
+        if (ent ~= nil and ent.Name == name) then
+            return ent;
+        end
+    end
+    
+    return nil;
+end
+
+---------------------------------------------------------------------------------------------------
 -- func: get_target
 -- desc: Obtains the given target type.
 -- retn: Entity if found, nil otherwise.
@@ -212,6 +277,47 @@ function get_target(name)
         ['scan']    = function() return get_target_scan() end,
         ['ht']      = function() return get_target_ht() end,
         ['ft']      = function() return get_target_ft() end,
+        ['t']       = function() return get_target_normal() end,
+        ['r']       = function() return get_target_r() end,
         ['default'] = function() return nil; end,
     };
+end
+
+---------------------------------------------------------------------------------------------------
+-- func: get_last_teller
+-- desc: Obtains the name of the person that last sent you a whisper.
+-- retn: Name if found, empty string otherwise.
+---------------------------------------------------------------------------------------------------
+function get_last_teller()
+    -- Ensure the pointer is valid..
+    if (target_info.r.pointer == 0) then
+        return nil;
+    end
+    
+    -- Read the pointer..
+    local ptr = mem:ReadLong(target_info.r.pointer + target_info.r.offset);
+    if (ptr == 0 or ptr == nil) then
+        return nil;
+    end
+    
+    -- Read the next pointer..
+    ptr = mem:ReadLong(ptr);
+    if (ptr == 0 or ptr == nil) then
+        return nil;
+    end
+    
+    -- Adjust the pointer with the second offset..
+    ptr = ptr + target_info.r.offset2;
+
+    -- Read the last tell target name..
+    local name = '';
+    for x = 0, 255 do
+        local data = mem:ReadChar(ptr + x);
+        if (data == 0) then
+            break;
+        end
+        name = name .. string.char(data);
+    end
+    
+    return name;
 end

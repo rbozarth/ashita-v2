@@ -35,3 +35,29 @@ require 'ffxi.common'
 recast      = require 'ffxi.recast'
 vanatime    = require 'ffxi.vanatime'
 weather     = require 'ffxi.weather'
+
+---------------------------------------------------------------------------------------------------
+-- desc: Switch Case for Lua (Credits: Unknown Author)
+---------------------------------------------------------------------------------------------------
+function switch(c)
+    local switch_table = 
+    {
+        casevar = c,
+        caseof = function(self,code)
+            local f;
+            if (self.casevar) then
+                f = code[self.casevar] or code.default;
+            else
+                f = code.missing or code.default;
+            end
+            if f then
+                if (type(f) == 'function') then
+                    return f(self.casevar,self);
+                else
+                    error('case: ' .. tostring(self.casevar) .. ' is not a function!');
+                end
+            end
+        end
+    };
+    return switch_table
+end
