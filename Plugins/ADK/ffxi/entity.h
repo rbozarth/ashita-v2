@@ -212,11 +212,11 @@ namespace Ashita
             unsigned char   Unknown0030[14];
             unsigned short  TargetIndex;        // The players target's index.
             unsigned short  PetIndex;
-            unsigned short  Unknown0031;
-            unsigned char   Unknown0032;
-            unsigned char   Unknown0033;        // Deals with Ballista / PvP, shows game information..
-            unsigned char   Unknown0034;        // Deals with current action..
-            unsigned char   Unknown0035;        // Deals with current action..
+            unsigned short  Unknown0031;        // Countdown after talking with an npc.
+            unsigned char   Unknown0032;        // Flag after talkign with an npc.
+            unsigned char   BallistaScoreFlag;  // Deals with Ballista / PvP, shows game information..
+            unsigned char   PankrationEnabled;  // Displays the Pankration score flags.
+            unsigned char   PankrationFlagFlip; // Determines which side each flag is on.
             unsigned short  Unknown0036;        // Deals with current action..
             float           ModelSize;          // Entity model size..
             unsigned int    Unknown0037;
