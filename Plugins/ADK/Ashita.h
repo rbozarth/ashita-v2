@@ -25,7 +25,7 @@
 /**
  * @brief Interface Header Version
  */
-#define ASHITA_INTERFACE_VERSION 1.00
+#define ASHITA_INTERFACE_VERSION 1.01
 
 /**
  * @brief Define DirectInput Version
@@ -35,6 +35,7 @@
 #endif
 
 #include <Windows.h>
+#include <functional>
 #include <string>
 
 /**
@@ -69,6 +70,11 @@
  */
 struct lua_State { };
 
+/**
+ * @brief Button click callback function typdef.
+ */
+typedef std::function<void(int, void*, float, float)> BUTTONCLICK;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // Ashita::Enums
@@ -91,6 +97,20 @@ namespace Ashita
             Menu = 0,           // Command input as if it were invoked from the game menu.
             Typed = 1,          // Command input as if it were typed by the player.
             Macro = 2           // Command input as if it were invoked from a macro.
+        };
+
+        /**
+         * @brief Frame Anchor Points
+         */
+        enum FrameAnchor : unsigned int
+        {
+            TopLeft = 0,
+            TopRight = 1,
+            BottomLeft = 2,
+            BottomRight = 3,
+
+            Right = 1,
+            Bottom = 2
         };
     }; // namespace Enums
 }; // namespace Ashita
@@ -567,6 +587,11 @@ struct IFontObject
     virtual bool GetItalic(void) const = 0;
     virtual bool GetRightJustified(void) const = 0;
     virtual void GetTextSize(SIZE* lpSize) const = 0;
+    virtual Ashita::Enums::FrameAnchor GetAnchor(void) const = 0;
+    virtual Ashita::Enums::FrameAnchor GetAnchorParent(void) const = 0;
+    virtual bool GetAutoResize(void) const = 0;
+    virtual IFontObject* GetParent(void) const = 0;
+    virtual BUTTONCLICK GetClickFunction(void) const = 0;
 
     virtual void SetColor(D3DCOLOR color) = 0;
     virtual void SetFont(const char* font, int nHeight) = 0;
@@ -577,6 +602,11 @@ struct IFontObject
     virtual void SetBold(bool bBold) = 0;
     virtual void SetItalic(bool bItalic) = 0;
     virtual void SetRightJustified(bool bRightJustified) = 0;
+    virtual void SetAnchor(Ashita::Enums::FrameAnchor anchor) = 0;
+    virtual void SetAnchorParent(Ashita::Enums::FrameAnchor anchor) = 0;
+    virtual void SetAutoResize(bool bResize) = 0;
+    virtual void SetParent(IFontObject* parent) = 0;
+    virtual void SetClickFunction(BUTTONCLICK lpClickFunc) = 0;
 
     virtual IPrimitiveObject* GetBackground(void) const = 0;
 };
