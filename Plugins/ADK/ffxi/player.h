@@ -178,7 +178,7 @@ namespace Ashita
             unsigned short      LimitPoints;
             unsigned char       MeritPoints;
             unsigned char       LimitMode;
-            unsigned char       Unknown0001[182];
+            unsigned char       Unknown0001[214];
             short               Buffs[32];
         };
     };
