@@ -65,12 +65,17 @@ namespace Ashita
             unsigned short  Zone;           // Party member zone id.
             unsigned int    Unknown1;       // Unknown
             unsigned int    FlagMask;       // Party member flags.
-            unsigned char   Unknown2[56];   // Unknown
+            unsigned char   Unknown2[49];   // Unknown
+            unsigned char   MainJob;        // Party member main job id.
+            unsigned char   MainJobLvl;     // Party member main job level.
+            unsigned char   subJob;         // Party member main job id.
+            unsigned char   subJobLvl;      // Party member main job level.
+            unsigned char   Unknown3[3];    // Unknown
             unsigned int    IDDupe;         // Member id dupe.
             unsigned char   CurrentHPPDupe; // Member hp percent dupe.
             unsigned char   CurrentMPPDupe; // Member mp percent dupe.
             unsigned char   Active;         // Party member active flag.
-            unsigned char   Unknown3;       // Unknown
+            unsigned char   Unknown4;       // Unknown
         };
     };
 };

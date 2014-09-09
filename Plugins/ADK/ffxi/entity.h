@@ -125,6 +125,7 @@ namespace Ashita
             unsigned char Animation7[4];
             unsigned char Animation8[4];
             unsigned char Animation9[4];
+            unsigned char Animation10[4];
         };
 
         /**
