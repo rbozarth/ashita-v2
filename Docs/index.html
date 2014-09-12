@@ -13,30 +13,6 @@
 </head>
 <body>
     <header>
-        <nav class="navbar" role="navigation">
-            <div class="container-fluid  navbar-left">
-                <a class="btn btn-info navbar-btn" href="index.html">
-                    <span class="glyphicon glyphicon-home"></span> Index
-                </a>
-            </div>
-            <div class="container-fluid  navbar-right">
-                <a class="btn btn-danger navbar-btn" href="http://delvl.ffevo.net/atom0s/ashita-v2/issues">
-                    <span class="glyphicon glyphicon-fire"></span> Bug Reports
-                </a>
-                <a class="btn btn-info navbar-btn" href="http://www.ffevo.net/forum/94-ashita-v2/">
-                    <span class="glyphicon glyphicon-comment"></span> Forums
-                </a>
-                <a class="btn btn-warning navbar-btn" href="changelog.html">
-                    <span class="glyphicon glyphicon-list"></span> Changelog
-                </a>
-                <a class="btn btn-info navbar-btn" href="http://ashita.ffevo.net/docs/doku.php?id=ashitav2:start">
-                    <span class="glyphicon glyphicon-file"></span> Documentation
-                </a>
-                <a class="btn btn-success navbar-btn" href="http://delvl.ffevo.net/">
-                    <span class="glyphicon glyphicon-wrench"></span> For Developers
-                </a>
-            </div>
-        </nav>
         <div class="container header">
             <img id="moogle" alt="Moogle" src="assets/Ashita.ico" width="128" height="128" style="margin-bottom: -20px; padding: 0;" data-toggle="tooltip" data-placement="right" title="Kupo!~">
             <hr />
@@ -49,84 +25,67 @@
         </div>
     </header>
 
-    <!-- Whats New -->
-    <div class="container whats-new">
-        <h2 style="margin-bottom: 25px;">What's new in v2?</h2>
-        <div class="row">
-            <div class="container-fluid whats-new-entries">
-                <div class="row">
-                    <div class="col-md-1"><i class="fa fa-refresh fa-5x"></i></div>
-                    <div class="col-md-10">
-                        <h4>Full Rewrite</h4>
-                        Ashita has undergone an entire rewrite from the ground up.
-                        This is to help make the code more readable as well as cleanup a lot of things that could have been coded better originally.
-                        The base of Ashita v2 is now in a much more maintainable state.
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1"><i class="fa fa-file-text-o fa-5x"></i></div>
-                    <div class="col-md-10">
-                        <h4>Lua Addons!</h4>
-                        With the popular success of LuaCast, we have taken the idea of Lua to the next level with full blown addons. Addons are like plugins but
-                        fully written in Lua. They allow users with little to no coding background easily get into creating new things for Ashita. Best of all,
-                        nearly all of the ADK is exposed to Lua so you have endless possibilities in creating extensive addons!
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1"><i class="fa fa-sign-in fa-5x"></i></div>
-                    <div class="col-md-10">
-                        <h4>Redesigned Plugin Interface (ADK)</h4>
-                        Given that Ashita is an actively developed project, we saw many increments to the interface version which required constant recompiling of
-                        extensions. With Ashita v2, we have redesigned the plugin interface to use a series of Get/Set functions instead of having plugins rely directly
-                        on the data structures. This allows us to update the structures internally while plugins can enjoy not having to be recompiled every update!
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1"><i class="fa fa-external-link-square fa-5x"></i></div>
-                    <div class="col-md-10">
-                        <h4>Moveable Font Objects</h4>
-                        No more are the days of having to constantly edit a configuration for a plugin to set where its text renders to on screen. With Ashita v2, you can
-                        now freely move font objects with your mouse [while holding shift] and place them where you want! Giving users the ultimate experience in customizing
-                        their interface.
-                    </div>
-                </div>
+    <div class="container header">
+        <h2 style="margin-bottom: 25px;">Thanks for choosing Ashita!</h2>
+        <nav class="navbar" role="navigation">
+            <div class="container-fluid  navbar">
+                <a class="btn btn-info navbar-btn" href="http://ashita.ffevo.net/">
+                    <span class="glyphicon glyphicon-home"></span> Homepage
+                </a>
+                <a class="btn btn-info navbar-btn" href="http://www.ffevo.net/forum/94-ashita-v2/">
+                    <span class="glyphicon glyphicon-comment"></span> Forums
+                </a>
+                <span>&nbsp;</span>
+                <a class="btn btn-info navbar-btn" href="http://ashita.ffevo.net/docs/doku.php?id=ashitav2:start">
+                    <span class="glyphicon glyphicon-file"></span> Documentation
+                </a>
+                <a class="btn btn-warning navbar-btn" href="http://ashita.ffevo.net/changelog.html">
+                    <span class="glyphicon glyphicon-list"></span> Changelog
+                </a>
+                <a class="btn btn-danger navbar-btn" href="http://delvl.ffevo.net/atom0s/ashita-v2/issues">
+                    <span class="glyphicon glyphicon-fire"></span> Bug Reports
+                </a>
+                <a class="btn btn-success navbar-btn" href="http://delvl.ffevo.net/">
+                    <span class="glyphicon glyphicon-wrench"></span> For Developers
+                </a>
             </div>
-        </div>
+        </nav>
     </div>
 
     <footer class="wrapper footer" style="margin-top: 50px">
-        <div class="wrapper wide">
+        <div class="wrapper">
             <div class="container">
                 <div class="row">
                     <div class="col4">
                         <h2>Core Developers</h2>
                         <ul>
-                            <li><a><span class="glyphicon glyphicon-user"></span> RZN</a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span> atom0s</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> RZN</a></li>
                         </ul>
                     </div>
                     <div class="col4">
-                        <h2>Active Plugin Developers</h2>
+                        <h2>Core Contributors</h2>
                         <ul>
-                            <li><a><span class="glyphicon glyphicon-user"></span> bluekirby0</a></li>
-                            <li><a><span class="glyphicon glyphicon-user"></span> h1pp0</a></li>
-                            <li><a><span class="glyphicon glyphicon-user"></span> Lolwutt</a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span> kjLotus</a></li>
-                            <li><a><span class="glyphicon glyphicon-user"></span> MaIRD</a></li>
-                            <li><a><span class="glyphicon glyphicon-user"></span> Praenuntiae</a></li>
-                            <li><a><span class="glyphicon glyphicon-user"></span> Vicrelant</a></li>
-                            <li><a><span class="glyphicon glyphicon-user"></span> Xenonsmurf</a></li>
                         </ul>
                     </div>
                     <div class="col4">
-                        <h2>Inactive Plugin Developers</h2>
+                        <h2>Plugin Developers</h2>
                         <ul>
                             <li><a><span class="glyphicon glyphicon-user"></span> Apogee</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> bluekirby0</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> h1pp0</a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span> Hypnotoad</a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span> Julian</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> kjLotus</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Lolwutt</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> MaIRD</a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span> Nospheratu</a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span> Praenuntiae</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Praenuntiae</a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span> Venrell</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Vicrelant</a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span> Xenonsmurf</a></li>
                         </ul>
                     </div>
                     <div class="col4">
@@ -134,7 +93,6 @@
                         <ul>
                             <li><a href="http://www.lua.org"><span class="glyphicon glyphicon-link"></span> Lua</a></li>
                             <li><a href="https://github.com/decimad/luabind-deboostified"><span class="glyphicon glyphicon-link"></span> Luabind</a></li>
-                            <li><a href="https://github.com/garrynewman/GWEN"><span class="glyphicon glyphicon-link"></span> Gwen</a></li>
                             <li><a href="http://research.microsoft.com/en-us/projects/detours/"><span class="glyphicon glyphicon-link"></span> Detours</a></li>
                         </ul>
                     </div>

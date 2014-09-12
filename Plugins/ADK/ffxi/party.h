@@ -68,8 +68,8 @@ namespace Ashita
             unsigned char   Unknown2[49];   // Unknown
             unsigned char   MainJob;        // Party member main job id.
             unsigned char   MainJobLvl;     // Party member main job level.
-            unsigned char   subJob;         // Party member main job id.
-            unsigned char   subJobLvl;      // Party member main job level.
+            unsigned char   SubJob;         // Party member main job id.
+            unsigned char   SubJobLvl;      // Party member main job level.
             unsigned char   Unknown3[3];    // Unknown
             unsigned int    IDDupe;         // Member id dupe.
             unsigned char   CurrentHPPDupe; // Member hp percent dupe.

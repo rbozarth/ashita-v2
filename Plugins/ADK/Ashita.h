@@ -25,7 +25,7 @@
 /**
  * @brief Interface Header Version
  */
-#define ASHITA_INTERFACE_VERSION 1.01
+#define ASHITA_INTERFACE_VERSION 1.02
 
 /**
  * @brief Define DirectInput Version
@@ -111,6 +111,26 @@ namespace Ashita
 
             Right = 1,
             Bottom = 2
+        };
+
+        /**
+         * @brief Mouse Input Type
+         */
+        enum MouseInput : unsigned int
+        {
+            // Click events..
+            LeftClick = 0,
+            RightClick = 1,
+            MiddleClick = 2,
+            X1Click = 3,
+            X2Click = 4,
+
+            // Mouse wheel events..
+            MouseWheelUp = 5,
+            MouseWheelDown = 6,
+
+            // Mouse move events..
+            MouseMove = 7
         };
     }; // namespace Enums
 }; // namespace Ashita
@@ -608,6 +628,8 @@ struct IFontObject
     virtual void SetParent(IFontObject* parent) = 0;
     virtual void SetClickFunction(BUTTONCLICK lpClickFunc) = 0;
 
+    virtual bool HitTest(float fPosX, float fPosY) = 0;
+
     virtual IPrimitiveObject* GetBackground(void) const = 0;
 };
 
@@ -666,6 +688,12 @@ struct IParty
     virtual unsigned char GetPartyMemberMPP(int nMemberIndex) const = 0;
     virtual unsigned short GetPartyMemberZone(int nMemberIndex) const = 0;
     virtual unsigned char GetPartyMemberActive(int nMemberIndex) const = 0;
+
+    // Party member job information functions..
+    virtual unsigned char GetPartyMemberMainJob(int nMemberIndex) const = 0;
+    virtual unsigned char GetPartyMemberMainJobLevel(int nMemberIndex) const = 0;
+    virtual unsigned char GetPartyMemberSubJob(int nMemberIndex) const = 0;
+    virtual unsigned char GetPartyMemberSubJobLevel(int nMemberIndex) const = 0;
 
     // Alliance information functions..
     virtual unsigned int GetAllianceLeaderID(void) const = 0;
