@@ -138,7 +138,7 @@ typedef enum TAUiParamValueType
 typedef void ( __stdcall * AUiSummaryCallback       )( char* summaryString, size_t summaryMaxLength, const void* value, void* clientData );
 typedef void ( __stdcall * AUiGetVarCallback        )( void* value, void* clientData );
 typedef void ( __stdcall * AUiSetVarCallback        )( const void* value, void* clientData );
-typedef void ( __stdcall * AUiButtonCallback        )( void* clientData );
+typedef void ( __stdcall * AUiButtonCallback        )( const char* name, void* clientData );
 typedef void ( __stdcall * AUiCopyCDStringToClient  )( char** destinationClientStringPtr, const char* sourceString );
 typedef void ( __stdcall * AUiCopyStdStringToClient )( std::string& destinationClientString, const std::string& sourceString );
 
