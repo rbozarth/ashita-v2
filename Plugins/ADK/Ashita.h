@@ -25,7 +25,7 @@
 /**
  * @brief Interface Header Version
  */
-#define ASHITA_INTERFACE_VERSION 1.02
+#define ASHITA_INTERFACE_VERSION 1.03
 
 /**
  * @brief Define DirectInput Version
@@ -74,6 +74,73 @@ struct lua_State { };
  * @brief Button click callback function typdef.
  */
 typedef std::function<void(int, void*, float, float)> BUTTONCLICK;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Ashita Gui Definitions
+//
+// Various definitions needed and used with the Ashita UI implementation.
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+typedef struct TAUiBar AUiBar;
+
+typedef enum TAUiType
+{
+    AUI_TYPE_UNDEF = 0,
+    AUI_TYPE_BOOLCPP = 1,
+    AUI_TYPE_BOOL8 = 2,
+    AUI_TYPE_BOOL16,
+    AUI_TYPE_BOOL32,
+    AUI_TYPE_CHAR,
+    AUI_TYPE_INT8,
+    AUI_TYPE_UINT8,
+    AUI_TYPE_INT16,
+    AUI_TYPE_UINT16,
+    AUI_TYPE_INT32,
+    AUI_TYPE_UINT32,
+    AUI_TYPE_FLOAT,
+    AUI_TYPE_DOUBLE,
+    AUI_TYPE_COLOR32,   // 32 bits color. Order is RGBA if API is OpenGL or Direct3D10, and inversed if API is Direct3D9 (can be modified by defining 'colorOrder=...', see doc)
+    AUI_TYPE_COLOR3F,   // 3 floats color. Order is RGB.
+    AUI_TYPE_COLOR4F,   // 4 floats color. Order is RGBA.
+    AUI_TYPE_CDSTRING,  // Null-terminated C Dynamic String (pointer to an array of char dynamically allocated with malloc/realloc/strdup)
+    AUI_TYPE_STDSTRING = (0x2fff0000 + sizeof(std::string)),    // C++ STL string (std::string)
+    AUI_TYPE_QUAT4F = AUI_TYPE_CDSTRING + 2,                    // 4 floats encoding a quaternion {qx,qy,qz,qs}
+    AUI_TYPE_QUAT4D,    // 4 doubles encoding a quaternion {qx,qy,qz,qs}
+    AUI_TYPE_DIR3F,     // direction vector represented by 3 floats
+    AUI_TYPE_DIR3D      // direction vector represented by 3 doubles
+} AUiType;
+#define AUI_TYPE_CSSTRING(n) ((AUiType)(0x30000000+((n)&0xfffffff))) // Null-terminated C Static String of size n (defined as char[n], with n<2^28)
+
+typedef struct TAUiEnumVal
+{
+    int             Value;
+    const char*     Label;
+} AUiEnumVal;
+
+typedef struct TAUiStructMember
+{
+    const char*     Name;
+    AUiType         Type;
+    size_t          Offset;
+    const char*     DefString;
+} AUiStructMember;
+
+typedef enum TAUiParamValueType
+{
+    AUI_PARAM_INT32,
+    AUI_PARAM_FLOAT,
+    AUI_PARAM_DOUBLE,
+    AUI_PARAM_CSTRING
+} AUiParamValueType;
+
+typedef void ( __stdcall * AUiSummaryCallback       )( char* summaryString, size_t summaryMaxLength, const void* value, void* clientData );
+typedef void ( __stdcall * AUiGetVarCallback        )( void* value, void* clientData );
+typedef void ( __stdcall * AUiSetVarCallback        )( const void* value, void* clientData );
+typedef void ( __stdcall * AUiButtonCallback        )( void* clientData );
+typedef void ( __stdcall * AUiCopyCDStringToClient  )( char** destinationClientStringPtr, const char* sourceString );
+typedef void ( __stdcall * AUiCopyStdStringToClient )( std::string& destinationClientString, const std::string& sourceString );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -792,6 +859,55 @@ struct IDataManager
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
+// IGuiManager
+//
+// Gui Manager interface that exposes various gui functions.
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////
+struct IGuiManager
+{
+    virtual int GetBarCount(void) = 0;
+
+    // Bar object management..
+    virtual AUiBar* CreateBar(const char* barName) = 0;
+    virtual AUiBar* GetBarByIndex(int barIndex) = 0;
+    virtual AUiBar* GetBarByName(const char* barName) = 0;
+    virtual int DeleteBar(AUiBar* bar) = 0;
+    virtual int DeleteAllBars(void) = 0;
+    
+    // Bar position management..
+    virtual int SetBottomBar(const AUiBar* bar) = 0;
+    virtual AUiBar* GetBottomBar(void) = 0;
+    virtual int SetTopBar(const AUiBar* bar) = 0;
+    virtual AUiBar* GetTopBar(void) = 0;
+
+    // Bar specific functions..
+    virtual const char* GetBarName(const AUiBar* bar) = 0;
+    virtual int RefreshBar(const AUiBar* bar) = 0;
+    virtual int RemoveVar(const AUiBar* bar, const char* name) = 0;
+    virtual int RemoveAllVars(const AUiBar* bar) = 0;
+    virtual int GetParam(const AUiBar* bar, const char* varName, const char* paramName, AUiParamValueType paramValueType, unsigned int outValueMaxCount, void* outValues) = 0;
+    virtual int SetParam(const AUiBar* bar, const char* varName, const char* paramName, AUiParamValueType paramValueType, unsigned int inValueCount, const void* inValues) = 0;
+
+    // Bar control creations..
+    virtual int AddVarRW(const AUiBar* bar, const char* name, AUiType type, void* var, const char* def) = 0;
+    virtual int AddVarRO(const AUiBar* bar, const char* name, AUiType type, const void* var, const char* def) = 0;
+    virtual int AddVarCB(const AUiBar* bar, const char* name, AUiType type, AUiSetVarCallback setCallback, AUiGetVarCallback getCallback, void *clientData, const char* def) = 0;
+    virtual int AddButton(const AUiBar* bar, const char* name, AUiButtonCallback callback, void *clientData, const char* def) = 0;
+    virtual int AddSeparator(const AUiBar* bar, const char* name, const char* def) = 0;
+    
+    // Global management functions..
+    virtual int Define(const char* def) = 0;
+    virtual AUiType DefineEnum(const char* name, const AUiEnumVal* enumValues, unsigned int nbValues) = 0;
+    virtual AUiType DefineEnumFromString(const char* name, const char* enumString) = 0;
+    virtual AUiType DefineStruct(const char* name, const AUiStructMember* structMembers, unsigned int nbMembers, size_t structSize, AUiSummaryCallback summaryCallback, void* summaryClientData) = 0;
+    virtual int RemoveStruct(const char* name) = 0;
+    virtual void CopyCDStringToClientFunc(AUiCopyCDStringToClient copyCDStringFunc) = 0;
+    virtual void CopyCDStringToLibrary(char **destinationLibraryStringPtr, const char *sourceClientString) = 0;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
 // IAshitaCore
 //
 // Main Ashita core interface that exposes the various other interfaces usable by Ashita plugins.
@@ -814,6 +930,7 @@ struct IAshitaCore
     virtual IInputManager* GetInputManager(void) = 0;
     virtual IPacketManager* GetPacketManager(void) = 0;
     virtual IPluginManager* GetPluginManager(void) = 0;
+    virtual IGuiManager* GetGuiManager(void) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
