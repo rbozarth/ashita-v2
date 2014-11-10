@@ -162,7 +162,7 @@ namespace Ashita
             unsigned short  Unknown0009;        // Some type of timer..
             unsigned short  Unknown0010;        // Deals with model update..
             unsigned char   ModelFade;          // Updates the entity model. (Blinking)
-            unsigned char   Unknown0013[11];
+            unsigned char   Unknown0013[9];
             EntityLook      Look;
             unsigned char   Unknown0014[14];
             unsigned short  ActionWaitTimer1;
@@ -174,7 +174,7 @@ namespace Ashita
             unsigned int    Unknown0018;
             unsigned short  NpcSpeechLoop;
             unsigned short  NpcSpeechFrame;
-            unsigned char   Unknown0019[12];
+            unsigned char   Unknown0019[14];
             float           MovementSpeed2;
             unsigned short  NpcWalkPos1;
             unsigned short  NpcWalkPos2;
