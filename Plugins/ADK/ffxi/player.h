@@ -174,11 +174,11 @@ namespace Ashita
             unsigned int        Homepoint; // (Homepoint & 0x0000FFFF)
             PlayerCombatSkills  CombatSkills;
             PlayerCraftSkills   CraftSkills;
-            unsigned char       Unknown0000[154];
+            unsigned char       Unknown0000[158];
             unsigned short      LimitPoints;
             unsigned char       MeritPoints;
             unsigned char       LimitMode;
-            unsigned char       Unknown0001[214];
+            unsigned char       Unknown0001[274];
             short               Buffs[32];
         };
     };

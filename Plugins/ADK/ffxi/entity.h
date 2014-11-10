@@ -131,7 +131,7 @@ namespace Ashita
         /**
          * @brief Entity Look Structure
          */
-        #pragma pack(push, 1)
+#pragma pack(push, 1)
         struct Entity
         {
             unsigned int    EntityVTablePtr; // CYyObject
@@ -146,7 +146,7 @@ namespace Ashita
             unsigned int    WarpPtr;
             unsigned int    Unknown0001;
             unsigned int    Unknown0002;
-            unsigned int    Unknown0003;
+            unsigned int    Unknown0003[9];
             float           Distance;
             unsigned int    Unknown0004;        // 0x64
             unsigned int    Unknown0005;        // 0x64
@@ -161,10 +161,8 @@ namespace Ashita
             unsigned char   Unknown0008;
             unsigned short  Unknown0009;        // Some type of timer..
             unsigned short  Unknown0010;        // Deals with model update..
-            unsigned short  Unknown0011;        // Deals with model update..
-            unsigned char   Unknown0012;
             unsigned char   ModelFade;          // Updates the entity model. (Blinking)
-            unsigned char   Unknown0013[6];
+            unsigned char   Unknown0013[11];
             EntityLook      Look;
             unsigned char   Unknown0014[14];
             unsigned short  ActionWaitTimer1;
@@ -176,7 +174,7 @@ namespace Ashita
             unsigned int    Unknown0018;
             unsigned short  NpcSpeechLoop;
             unsigned short  NpcSpeechFrame;
-            unsigned char   Unknown0019[10];
+            unsigned char   Unknown0019[12];
             float           MovementSpeed2;
             unsigned short  NpcWalkPos1;
             unsigned short  NpcWalkPos2;
@@ -225,7 +223,7 @@ namespace Ashita
             unsigned short  Unknown0038;
             unsigned char   MonstrosityName[36];
         };
-        #pragma pack(pop)
+#pragma pack(pop)
     };
 };
 
