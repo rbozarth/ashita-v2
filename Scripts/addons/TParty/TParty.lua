@@ -26,7 +26,6 @@ local tparty_config = { };
 
 local tparty_str_targethpp      = "__tparty_targethpp";
 local tparty_str_partymember_tp = "__tparty_party_tpp";
-local tparty_str_partymember_mp = "__tparty_party_mp";
 
 ---------------------------------------------------------------------------------------------------
 -- func: load
@@ -70,18 +69,6 @@ ashita.register_event('load', function()
         f:SetPosition(0, 0);
         f:SetVisibility(true);
         f:SetLockPosition(true);
-        
-        -- Create the alliance member mp object..
-        if (x >= 6) then
-            local f = AshitaCore:GetFontManager():CreateFontObject(string.format('%s%d', tparty_str_partymember_mp, x));
-            f:SetFont('Arial', 8 * tparty_config.scaleY);
-            f:SetBold(true);
-            f:SetRightJustified(true);
-            f:SetText(string.format('%s%d', tparty_str_partymember_mp, x));
-            f:SetPosition(0, 0);
-            f:SetVisibility(true);
-            f:SetLockPosition(true);
-        end
     end
 end );
 
@@ -95,9 +82,6 @@ ashita.register_event('unload', function()
     AshitaCore:GetFontManager():DeleteFontObject( tparty_str_targethpp );
     for x = 0, 18 do
         AshitaCore:GetFontManager():DeleteFontObject(string.format('%s%d', tparty_str_partymember_tp, x));
-        if (x >= 6) then
-            AshitaCore:GetFontManager():DeleteFontObject(string.format('%s%d', tparty_str_partymember_mp, x));
-        end
     end
 end );
 
@@ -166,7 +150,6 @@ ashita.register_event('render', function()
         
         -- Adjust the label positions..
         local fTP = AshitaCore:GetFontManager():GetFontObject(string.format('%s%d', tparty_str_partymember_tp, x));
-        local fMP = AshitaCore:GetFontManager():GetFontObject(string.format('%s%d', tparty_str_partymember_mp, x));
         if (fTP ~= nil) then
             local tp = party:GetPartyMemberTP(x);
             fTP:SetPosition(currX, currY);
@@ -179,18 +162,12 @@ ashita.register_event('render', function()
                 fTP:SetColor(0xFFFFFFFF);
             end
         end
-        if (fMP ~= nil) then
-            fMP:SetPosition(currX + (75 * tparty_config.scaleX), currY);
-            fMP:SetText(tostring(party:GetPartyMemberMP(x)));
-        end
         
         -- Set the label visibility status..
         if (party:GetPartyMemberActive(x) ~= 0 and myZone == party:GetPartyMemberZone(x)) then
             fTP:SetVisibility(true);
-            fMP:SetVisibility(true);
         else
             fTP:SetVisibility(false);
-            fMP:SetVisibility(false);
         end
     end
     
