@@ -71,6 +71,7 @@ namespace Ashita
          */
         struct PlayerCombatSkills
         {
+            CombatSkill Unknown;
             CombatSkill HandToHand;
             CombatSkill Dagger;
             CombatSkill Sword;
@@ -174,7 +175,7 @@ namespace Ashita
             unsigned int        Homepoint; // (Homepoint & 0x0000FFFF)
             PlayerCombatSkills  CombatSkills;
             PlayerCraftSkills   CraftSkills;
-            unsigned char       Unknown0000[158];
+            unsigned char       Unknown0000[156];
             unsigned short      LimitPoints;
             unsigned char       MeritPoints;
             unsigned char       LimitMode;
