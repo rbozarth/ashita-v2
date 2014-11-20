@@ -147,6 +147,12 @@ namespace Ashita
             CraftSkill Bonecraft;
             CraftSkill Alchemy;
             CraftSkill Cooking;
+            CraftSkill Synergy;
+            CraftSkill Riding;
+            CraftSkill Unused0000;
+            CraftSkill Unused0001;
+            CraftSkill Unused0002;
+            CraftSkill Unused0003;
         };
 
         /**
@@ -175,7 +181,7 @@ namespace Ashita
             unsigned int        Homepoint; // (Homepoint & 0x0000FFFF)
             PlayerCombatSkills  CombatSkills;
             PlayerCraftSkills   CraftSkills;
-            unsigned char       Unknown0000[156];
+            unsigned char       Unknown0000[144];
             unsigned short      LimitPoints;
             unsigned char       MeritPoints;
             unsigned char       LimitMode;
