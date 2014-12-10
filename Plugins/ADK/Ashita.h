@@ -25,7 +25,7 @@
 /**
  * @brief Interface Header Version
  */
-#define ASHITA_INTERFACE_VERSION 1.03
+#define ASHITA_INTERFACE_VERSION 1.04
 
 /**
  * @brief Define DirectInput Version
@@ -135,12 +135,12 @@ typedef enum TAUiParamValueType
     AUI_PARAM_CSTRING
 } AUiParamValueType;
 
-typedef void ( __stdcall * AUiSummaryCallback       )( char* summaryString, size_t summaryMaxLength, const void* value, void* clientData );
-typedef void ( __stdcall * AUiGetVarCallback        )( void* value, void* clientData );
-typedef void ( __stdcall * AUiSetVarCallback        )( const void* value, void* clientData );
-typedef void ( __stdcall * AUiButtonCallback        )( const char* name, void* clientData );
-typedef void ( __stdcall * AUiCopyCDStringToClient  )( char** destinationClientStringPtr, const char* sourceString );
-typedef void ( __stdcall * AUiCopyStdStringToClient )( std::string& destinationClientString, const std::string& sourceString );
+typedef void(__stdcall * AUiSummaryCallback)(char* summaryString, size_t summaryMaxLength, const void* value, void* clientData);
+typedef void(__stdcall * AUiGetVarCallback)(void* value, void* clientData);
+typedef void(__stdcall * AUiSetVarCallback)(const void* value, void* clientData);
+typedef void(__stdcall * AUiButtonCallback)(const char* name, void* clientData);
+typedef void(__stdcall * AUiCopyCDStringToClient)(char** destinationClientStringPtr, const char* sourceString);
+typedef void(__stdcall * AUiCopyStdStringToClient)(std::string& destinationClientString, const std::string& sourceString);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -282,6 +282,7 @@ struct IItem
     unsigned int    ReuseDelay;         // Item reuse delay.
 
     unsigned int    Elements;           // Item elements.
+    unsigned int    ItemLevel;          // Item level. (Used by armor and weapons.)
 
     unsigned short  Var1;               // Furnishings: Element.
     unsigned int    Var2;               // Furnishings: StorageSlots.
@@ -810,6 +811,13 @@ struct IPlayer
     virtual unsigned char GetMeritPoints(void) = 0;
     virtual unsigned char GetLimitMode(void) = 0;
     virtual short* GetBuffs(void) const = 0;
+
+    virtual bool HasKeyItem(unsigned int id) = 0;
+    virtual bool HasAbility(unsigned int id) = 0;
+    virtual bool HasSpell(unsigned int id) = 0;
+    virtual bool HasTrait(unsigned int id) = 0;
+    virtual bool HasPetCommand(unsigned int id) = 0;
+    virtual bool HasWeaponSkill(unsigned int id) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -874,7 +882,7 @@ struct IGuiManager
     virtual AUiBar* GetBarByName(const char* barName) = 0;
     virtual int DeleteBar(AUiBar* bar) = 0;
     virtual int DeleteAllBars(void) = 0;
-    
+
     // Bar position management..
     virtual int SetBottomBar(const AUiBar* bar) = 0;
     virtual AUiBar* GetBottomBar(void) = 0;
@@ -895,7 +903,7 @@ struct IGuiManager
     virtual int AddVarCB(const AUiBar* bar, const char* name, AUiType type, AUiSetVarCallback setCallback, AUiGetVarCallback getCallback, void *clientData, const char* def) = 0;
     virtual int AddButton(const AUiBar* bar, const char* name, AUiButtonCallback callback, void *clientData, const char* def) = 0;
     virtual int AddSeparator(const AUiBar* bar, const char* name, const char* def) = 0;
-    
+
     // Global management functions..
     virtual int Define(const char* def) = 0;
     virtual AUiType DefineEnum(const char* name, const AUiEnumVal* enumValues, unsigned int nbValues) = 0;
