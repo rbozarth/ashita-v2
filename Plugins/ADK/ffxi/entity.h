@@ -154,7 +154,7 @@ namespace Ashita
             unsigned int    PetOwnerID;
             unsigned int    PetTP;
             unsigned char   HealthPercent;
-            unsigned char   Unknown0006;
+            unsigned char   PetMPPercent;
             unsigned char   Unknown0007;
             unsigned char   Type;
             unsigned char   Race;
