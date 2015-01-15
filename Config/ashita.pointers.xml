@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <pointers>
-	<pointer name="addtochat" pattern="535556578BF96A086A00897C2418" mask="xxxxxxxxxxxxxx" offset="-6" count="0" />
+	<pointer name="addtochat" pattern="535556578BE96A086A00896C241C" mask="xxxxxxxxxxxxxx" offset="-6" count="0" />
 	<pointer name="autotranslate" pattern="145685ED578BF1C644241000C644241100C64424" mask="xxxxxxxxxxxxxxxxxxxx" offset="-6" count="0" />
-	<pointer name="autotranslatethis" pattern="8BFD83C9FF33C06A00F2AEF7D1496A01518B0D" mask="xxxxxxxxxxxxxxxxxxx" offset="0" count="0" />
+	<pointer name="autotranslatethis" pattern="8BFF83C9FF33C06A00F2AEF7D1496A01518B0D" mask="x?xxxxxxxxxxxxxxxxx" offset="0" count="0" />
 	<pointer name="decryptpacket" pattern="b805000053558bac24c8050000563be857" mask="xxxxxxxxxxxxxxxxx" offset="-6" count="0" />
 	<pointer name="encryptpacket" pattern="33c0558b6c24144956578d14cd0000000033ff85ed89542410" mask="xxxxxxxxxxxxxxxxxxxxxxxxx" offset="-6" count="0" />
 	<pointer name="entityarray" pattern="8B560C8B042A8B0485" mask="xxxxxxxxx" offset="9" count="0" />
