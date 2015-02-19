@@ -146,7 +146,7 @@ namespace Ashita
             unsigned int    WarpPtr;
             unsigned int    Unknown0001;
             unsigned int    Unknown0002;
-            unsigned int    Unknown0003[9];
+            unsigned int    Unknown0003[10];
             float           Distance;
             unsigned int    Unknown0004;        // 0x64
             unsigned int    Unknown0005;        // 0x64
