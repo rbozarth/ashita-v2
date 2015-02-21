@@ -25,7 +25,7 @@
 /**
  * @brief Interface Header Version
  */
-#define ASHITA_INTERFACE_VERSION 1.04
+#define ASHITA_INTERFACE_VERSION 1.05
 
 /**
  * @brief Define DirectInput Version
@@ -241,9 +241,12 @@ struct ISpell
     unsigned short MP;                  // Mp cost
     unsigned char  Cast;                // Cast time (1/4 second)
     unsigned char  Recast;              // Recast time (1/4 second)
-    unsigned char  RequiredLevel[24];   // RequiredLevel[JobID] 0xFF == can not be learned.
+    unsigned short RequiredLevel[24];   // RequiredLevel[JobID] 0xFFFF == can not be learned.
     unsigned short ResourceID;          // Resource ID
     unsigned short IconIndex;           // Index of the icon.
+    unsigned short IconIndex2;          // Index of the icon. (2)
+    unsigned char  Unknown0000;         // Unknown value.
+    unsigned char  Unknown0001;         // Unknown value.
     const char*    Name[5];             // Spell name for the selected language.
     const char*    Description[5];      // Description of the spell.
 };
