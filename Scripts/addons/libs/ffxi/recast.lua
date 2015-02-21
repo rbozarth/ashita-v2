@@ -56,7 +56,7 @@ end
 -- desc : Obtains the current list of usuable ability ids.
 ----------------------------------------------------------------------
 function Recast.GetAbilityRecastIdFromIndex( index )
-    return mem:ReadUChar( Recast.A_RECAST_POINTER + ( index * 4 ) + 3 );
+    return mem:ReadUChar( Recast.A_RECAST_POINTER + ( index * 8 ) + 3 );
 end
 
 ----------------------------------------------------------------------
@@ -64,7 +64,7 @@ end
 -- desc : Obtains an abilities recast by its index.
 ----------------------------------------------------------------------
 function Recast.GetAbilityRecastByIndex( index )
-    return mem:ReadULong( Recast.A_RECAST_POINTER + ( index * 4 ) + 0x7C );
+    return mem:ReadULong( Recast.A_RECAST_POINTER + ( index * 4 ) + 0xF8 );
 end
 
 ----------------------------------------------------------------------
