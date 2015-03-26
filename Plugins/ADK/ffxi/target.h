@@ -35,34 +35,36 @@ namespace Ashita
             unsigned int    SubTargetID;
             unsigned int    SubTargetEntity;
             unsigned int    SubTargetWarPtr;
+            unsigned int    Unknown0000;
             unsigned char   SubTargetVisibility;        // Flag that determines if the target window shows..
-            unsigned char   Unknown0000;                // Unknown boolean..
+            unsigned char   Unknown0001;                // Unknown boolean..
             unsigned short  SubTargetMask;
             unsigned int    CurrentTargetIndex;
             unsigned int    CurrentTargetID;
             unsigned int    CurrentTargetEntity;
             unsigned int    CurrentTargetWarp;
+            unsigned int    Unknown0002;
             unsigned char   CurrentTargetVisibility;    // Flag that determines if the current target arrow is visible..
-            unsigned char   Unknown0001;                // Unknown boolean..
-            unsigned short  CurrentTargetMask;
-            unsigned char   Unknown0002;
-            unsigned char   LockedOn;                   // Boolean if we are locked on target..
             unsigned char   Unknown0003;                // Unknown boolean..
+            unsigned short  CurrentTargetMask;
+            unsigned char   Unknown0004;
+            unsigned char   LockedOn;                   // Boolean if we are locked on target..
+            unsigned char   Unknown0005;                // Unknown boolean..
             unsigned char   SubTargetActive;            // Boolean if the sub-target is open..
             unsigned char   SubTargetDeactivate;        // When set to 01, will force-close the sub-target window..
-            unsigned short  Unknown0004;                // Unknown boolean..
-            unsigned char   Unknown0005;
-            unsigned char   Unknown0006;
+            unsigned short  Unknown0006;                // Unknown boolean..
             unsigned char   Unknown0007;
             unsigned char   Unknown0008;
             unsigned char   Unknown0009;
-            unsigned int    Unknown0010;                // Possibly sub-target spell flags.. (Changes based on spell type..)
-            unsigned short  Unknown0011;
-            unsigned short  Unknown0012;
+            unsigned char   Unknown0010;
+            unsigned char   Unknown0011;
+            unsigned int    Unknown0012;                // Possibly sub-target spell flags.. (Changes based on spell type..)
+            unsigned short  Unknown0013;
+            unsigned short  Unknown0014;
             unsigned char   MenuOpened;                 // Set to 1 while a menu is open, 0 otherwise..
-            unsigned char   Unknown0013;
-            unsigned char   Unknown0014;                // Unknown, gets set to 0 or 1 randomly..
-            unsigned char   Unknown0015;                // Unknown, gets set to 0..
+            unsigned char   Unknown0015;
+            unsigned char   Unknown0016;                // Unknown, gets set to 0 or 1 randomly..
+            unsigned char   Unknown0017;                // Unknown, gets set to 0..
         };
 
         /**
