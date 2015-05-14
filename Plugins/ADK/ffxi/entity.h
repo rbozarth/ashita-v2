@@ -174,7 +174,7 @@ namespace Ashita
             unsigned int    Unknown0018;
             unsigned short  NpcSpeechLoop;
             unsigned short  NpcSpeechFrame;
-            unsigned char   Unknown0019[14];
+            unsigned char   Unknown0019[18];
             float           MovementSpeed2;
             unsigned short  NpcWalkPos1;
             unsigned short  NpcWalkPos2;

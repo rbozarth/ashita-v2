@@ -205,8 +205,9 @@ namespace Ashita
             Sack = 6,
             Case = 7,
             Wardrobe = 8,
+            Safe2 = 9,
 
-            StorageMax = 9
+            StorageMax = 10
         };
     };
 };

@@ -25,7 +25,7 @@
 /**
  * @brief Interface Header Version
  */
-#define ASHITA_INTERFACE_VERSION 1.05
+#define ASHITA_INTERFACE_VERSION 1.06
 
 /**
  * @brief Define DirectInput Version

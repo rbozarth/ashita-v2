@@ -61,10 +61,11 @@ namespace Ashita
             unsigned int    Unknown0012;                // Possibly sub-target spell flags.. (Changes based on spell type..)
             unsigned short  Unknown0013;
             unsigned short  Unknown0014;
+            unsigned int    Unknown0015;
             unsigned char   MenuOpened;                 // Set to 1 while a menu is open, 0 otherwise..
-            unsigned char   Unknown0015;
-            unsigned char   Unknown0016;                // Unknown, gets set to 0 or 1 randomly..
-            unsigned char   Unknown0017;                // Unknown, gets set to 0..
+            unsigned char   Unknown0016;
+            unsigned char   Unknown0017;                // Unknown, gets set to 0 or 1 randomly..
+            unsigned char   Unknown0018;                // Unknown, gets set to 0..
         };
 
         /**
