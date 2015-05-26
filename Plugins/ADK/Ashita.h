@@ -313,10 +313,10 @@ struct IItem
     unsigned int    PuppetElements;     // The puppet elements of the item.
 
     // Item Strings
-    char*           Name[3];            // The name of the item. (0 = Default, 1 = Japanese, 2 = English)
-    char*           Description[3];     // The description of the item. (0 = Default, 1 = Japanese, 2 = English)
-    char*           LogNameSingular[3]; // The log name (singular) of the item. (0 = Default, 1 = Japanese, 2 = English)
-    char*           LogNamePlural[3];   // The log name (plural) of the item. (0 = Default, 1 = Japanese, 2 = English)
+    const char*     Name[3];            // The name of the item. (0 = Default, 1 = Japanese, 2 = English)
+    const char*     Description[3];     // The description of the item. (0 = Default, 1 = Japanese, 2 = English)
+    const char*     LogNameSingular[3]; // The log name (singular) of the item. (0 = Default, 1 = Japanese, 2 = English)
+    const char*     LogNamePlural[3];   // The log name (plural) of the item. (0 = Default, 1 = Japanese, 2 = English)
 
     // Item Image Information
     unsigned int    ImageSize;          // The image size of the item icon.
