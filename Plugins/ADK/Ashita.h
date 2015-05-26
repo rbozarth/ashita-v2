@@ -25,7 +25,7 @@
 /**
  * @brief Interface Header Version
  */
-#define ASHITA_INTERFACE_VERSION 1.06
+#define ASHITA_INTERFACE_VERSION 1.07
 
 /**
  * @brief Define DirectInput Version
@@ -211,17 +211,22 @@ namespace Ashita
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 struct IAbility
 {
-    unsigned short ID;                  // The real ability id not the recast id.
-    unsigned char  Type;                // Ability type.
-    unsigned char  ListIconID;          // e.g. 40-47 for the elemental-colored dots
-    unsigned short Unknown;             // Unknown
-    unsigned short MP;                  // Mp Cost if any
-    unsigned short TimerID;             // Recast ID
-    unsigned short ValidTargets;        // Valid targets
-    signed   char  TP;                  // Tp if any, -1 if not
-    signed   char  Cat;                 // For non abilitys like /ranged etc -1 for none
-    const char*    Name[5];             // Ability name for the selected language.
-    const char*    Description[5];      // Description of the ability.
+    unsigned short  ID;                 // The real ability id, not the recast id!
+    unsigned char   Type;               // The type of ability.
+    unsigned char   Element;            // The element of the ability.
+    unsigned short  ListIconID;         // The list icon id of the ability. (ex. 40-47 for the elemental-colored dots)
+    unsigned short  MP;                 // The mp cost, if any, of the ability.
+    unsigned short  TimerID;            // The recast timer id of the ability.
+    unsigned short  ValidTargets;       // Valid targets the ability can be used on.
+    signed short    TP;                 // TP cost of the ability, if any. (0 if none.)
+    unsigned char   Unknown0000;        // Unknown
+    unsigned char   MonsterLevel;       // The monster level of the ability.
+    signed char     Range;              // The range of the ability.
+    unsigned char   Unknown0001[30];    // Unknown
+    unsigned char   EOE;                // EOE (End of Entry, 0xFF)
+
+    const char*     Name[3];            // The name of the ability. (0 = Default, 1 = Japanese, 2 = English)
+    const char*     Description[3];     // The description of the ability. (0 = Default, 1 = Japanese, 2 = English)
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -233,22 +238,25 @@ struct IAbility
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 struct ISpell
 {
-    unsigned short ID;                  // Spell ID, also used in recast 
-    unsigned short MagicType;           // Magic type
-    unsigned short Element;             // Spell element
-    unsigned short ValidTargets;        // Valid cast targets
-    unsigned short Skill;               // Magic skill type    
-    unsigned short MP;                  // Mp cost
-    unsigned char  Cast;                // Cast time (1/4 second)
-    unsigned char  Recast;              // Recast time (1/4 second)
-    unsigned short RequiredLevel[24];   // RequiredLevel[JobID] 0xFFFF == can not be learned.
-    unsigned short ResourceID;          // Resource ID
-    unsigned short IconIndex;           // Index of the icon.
-    unsigned short IconIndex2;          // Index of the icon. (2)
-    unsigned char  Unknown0000;         // Unknown value.
-    unsigned char  Unknown0001;         // Unknown value.
-    const char*    Name[5];             // Spell name for the selected language.
-    const char*    Description[5];      // Description of the spell.
+    unsigned short  Index;              // The index of the spell.
+    unsigned short  MagicType;          // The magic type of the spell.
+    unsigned short  Element;            // The element of the spell.
+    unsigned short  ValidTargets;       // Valid targets the spell can be used on.
+    unsigned short  Skill;              // The skill type of the spell.
+    unsigned short  MPCost;             // The MP cost of the spell.
+    unsigned char   CastTime;           // The cast time of the spell.
+    unsigned char   RecastDelay;        // The recast delay of the spell.
+    signed short    LevelRequired[24];  // The level required to use the spell for each job. (-1 means cannot use/be learned.)
+    unsigned short  ID;                 // The ID of the spell.
+    unsigned short  ListIcon1;          // The list icon (1) of the spell.
+    unsigned short  ListIcon2;          // The list icon (1) of the spell.
+    unsigned char   Requirements;       // The requirements to use the spell.
+    signed char     Range;              // The range of the spell.
+    unsigned char   Unknown0000[17];    // Unknown
+    unsigned char   EOE;                // EOE (End of Entry, 0xFF)
+    
+    const char*     Name[3];            // The name of the ability. (0 = Default, 1 = Japanese, 2 = English)
+    const char*     Description[3];     // The description of the ability. (0 = Default, 1 = Japanese, 2 = English)
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -258,47 +266,63 @@ struct ISpell
 // Resource object used for item entries.
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+struct MonAbility
+{
+    unsigned short  Move;               // The monster ability id of the move.
+    signed char     Level;              // The level of the ability.
+    unsigned char   Unknown0000;        // Unknown
+};
 struct IItem
 {
-    unsigned int    ItemID;             // Item id.
-    unsigned short  Flags;              // Item flags.
-    unsigned short  StackSize;          // Stack size.
-    unsigned short  ItemType;           // Item type.
-    unsigned short  ResourceID;         // Item resource id.
-    unsigned short  ValidTargets;       // Item valid targets.
+    // Common Item Header
+    unsigned int    ItemID;             // The id of the item.
+    unsigned short  Flags;              // The flags of the item.
+    unsigned short  StackSize;          // The stack size of the item.
+    unsigned short  ItemType;           // The item type.
+    unsigned short  ResourceID;         // The resource if of the item. (Typically used for AH sorting.)
+    unsigned short  ValidTargets;       // Valid targets the item can be used on.
 
-    unsigned short  Level;              // Item level.
-    unsigned short  Slot;               // Item slot.
-    unsigned short  Races;              // Item races.
-    unsigned int    Jobs;               // Item jobs.
-    unsigned short  ShieldSize;         // Item shield size.
+    // Armor + Weapons
+    unsigned short  Level;              // The level of the item.
+    unsigned short  Slots;              // The valid slots the item can be equipped to.
+    unsigned short  Races;              // The races that can use the item.
+    unsigned int    Jobs;               // The jobs that can use the item.
+    unsigned char   SuperiorLevel;      // The superior level of the item.
+    unsigned short  ShieldSize;         // The shield size of the item.
+    unsigned char   MaxCharges;         // The max charges of the item.
+    unsigned short  CastTime;           // The cast time of the item.
+    unsigned short  CastDelay;          // The cast delay of the item.
+    unsigned int    RecastDelay;        // The recast delay of the item.
+    unsigned short  ItemLevel;          // The item level of the item.
+    unsigned short  Damage;             // The damage of the item. (Used for weapons.)
+    unsigned short  Delay;              // The delay of the item. (Used for weapons.)
+    unsigned short  DPS;                // The DPS of the item. (Used for weapons.)
+    unsigned char   Skill;              // The skill type of the item.
+    unsigned char   JugSize;            // The jug size of the item.
 
-    unsigned short  Damage;             // Item damage.
-    unsigned short  Delay;              // Item delay.
-    unsigned short  DPS;                // Item dps.
-    unsigned char   Skill;              // Item skill.
-    unsigned char   JugSize;            // Item jug size.
+    // Instinct
+    unsigned short  InstinctCost;       // The instinct cost of the item.
 
-    unsigned char   MaxCharges;         // Item max charges.
-    unsigned char   CastTime;           // Item cast time.
-    unsigned short  UseDelay;           // Item use delay.
-    unsigned int    ReuseDelay;         // Item reuse delay.
+    // Monipulator
+    unsigned short  MonipulatorID;              // The monipulator id of the item.
+    char            MonipulatorName[32];        // The monipulator name of the item.
+    MonAbility      MonipulatorAbilities[16];   // The monipulator abilities of the item.
 
-    unsigned int    Elements;           // Item elements.
-    unsigned int    ItemLevel;          // Item level. (Used by armor and weapons.)
+    // Puppet
+    unsigned short  PuppetSlot;         // The puppet slot of the item.
+    unsigned int    PuppetElements;     // The puppet elements of the item.
 
-    unsigned short  Var1;               // Furnishings: Element.
-    unsigned int    Var2;               // Furnishings: StorageSlots.
+    // Item Strings
+    char*           Name[3];            // The name of the item. (0 = Default, 1 = Japanese, 2 = English)
+    char*           Description[3];     // The description of the item. (0 = Default, 1 = Japanese, 2 = English)
+    char*           LogNameSingular[3]; // The log name (singular) of the item. (0 = Default, 1 = Japanese, 2 = English)
+    char*           LogNamePlural[3];   // The log name (plural) of the item. (0 = Default, 1 = Japanese, 2 = English)
 
-    char*           Name;               // Item name.
-    char*           Description;        // Item description.
-    char*           LogNameSingular;    // Item log name. (Singular)
-    char*           LogNamePlural;      // Item log name. (Plural)
-
-    unsigned int    ImageSize;          // Item image size.
-    unsigned char   ImageType;          // Item image type.
-    char            ImageName[16];      // Item image name.
-    char            Bitmap[0x978];      // Item image data.
+    // Item Image Information
+    unsigned int    ImageSize;          // The image size of the item icon.
+    unsigned char   ImageType;          // The image type of the item icon.
+    unsigned char   ImageName[16];      // The image name of the item icon.
+    unsigned char   Bitmap[0x978];      // The raw bitmap data of the item icon. (Can be directly used as a bitmap.)
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -464,19 +488,19 @@ struct IPointerManager
 struct IResourceManager
 {
     virtual IAbility* GetAbilityByID(unsigned int abilityId) = 0;
-    virtual IAbility* GetAbilityByName(const char* pszName, int nLanguageId) = 0;
+    virtual IAbility* GetAbilityByName(const char* name, int languageId) = 0;
     virtual IAbility* GetAbilityByTimerID(unsigned int timerId) = 0;
 
     virtual ISpell* GetSpellByID(unsigned int spellId) = 0;
-    virtual ISpell* GetSpellByName(const char* pszName, int nLanguageId) = 0;
+    virtual ISpell* GetSpellByName(const char* name, int languageId) = 0;
 
     virtual IItem* GetItemByID(unsigned int itemId) = 0;
-    virtual IItem* GetItemByName(const char* pszName) = 0;
+    virtual IItem* GetItemByName(const char* name, int languageId) = 0;
 
-    virtual const char* GetString(const char* pszTable, unsigned int nIndex) = 0;
-    virtual const char* GetString(const char* pszTable, unsigned int nIndex, int nLanguageId) = 0;
-    virtual unsigned int GetString(const char* pszTable, const char* pszName) = 0;
-    virtual unsigned int GetString(const char* pszTable, const char* pszName, int nLanguageId) = 0;
+    virtual const char* GetString(const char* table, unsigned int index) = 0;
+    virtual const char* GetString(const char* table, unsigned int index, int languageId) = 0;
+    virtual unsigned int GetString(const char* table, const char* name) = 0;
+    virtual unsigned int GetString(const char* table, const char* name, int languageId) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
